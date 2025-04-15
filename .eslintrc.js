@@ -40,12 +40,12 @@ module.exports = {
                         position: "before",
                     },
                     {
-                        pattern: "@/**",
+                        pattern: "~/**",
                         group: "internal",
                         position: "after",
                     },
                     {
-                        pattern: "~/**",
+                        pattern: "@/**",
                         group: "internal",
                         position: "after",
                     },

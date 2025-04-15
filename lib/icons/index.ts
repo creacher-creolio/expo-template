@@ -1,5 +1,3 @@
-export { Book as BookIcon } from "./Book";
-export { BookOpen as BookOpenIcon } from "./BookOpen";
 export { Check as CheckIcon } from "./Check";
 export { ChevronDown as ChevronDownIcon } from "./ChevronDown";
 export { ChevronRight as ChevronRightIcon } from "./ChevronRight";

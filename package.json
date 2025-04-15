@@ -4,23 +4,21 @@
     "version": "1.0.0",
     "scripts": {
         "start": "expo start --go",
-        "clear": "expo start --clear --go",
+        "clear": "expo start --go --clear",
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "expo start --web",
         "test": "jest --watchAll",
         "lint": "expo lint",
         "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier --write \"**/*.{css,scss,ts,tsx,js,jsx,json,mjs}\"",
-        "clean": "powershell -Command \"Remove-Item -Path .expo, node_modules, package-lock.json, pnpm-lock.yaml -Force -Recurse\"",
-        "reinstall": "powershell -Command \"Remove-Item -Path .expo, node_modules, package-lock.json, pnpm-lock.yaml -Force -Recurse\" && pnpm install",
-        "reset-project": "node ./scripts/reset-project.js",
-        "postinstall": "npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css"
+        "hollow-out": "powershell -Command \"Remove-Item -Path .expo, node_modules, package-lock.json, pnpm-lock.yaml -Force -Recurse\""
     },
     "jest": {
         "preset": "jest-expo"
     },
     "dependencies": {
         "@expo/vector-icons": "^14.0.4",
+        "@react-native-async-storage/async-storage": "1.23.1",
         "@react-navigation/bottom-tabs": "^7.3.8",
         "@react-navigation/material-top-tabs": "^7.2.8",
         "@react-navigation/native": "^7.1.4",
@@ -51,6 +49,7 @@
         "@rn-primitives/toggle": "^1.1.0",
         "@rn-primitives/tooltip": "~1.1.0",
         "@rn-primitives/types": "~1.1.0",
+        "@supabase/supabase-js": "^2.49.4",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "expo-blur": "~14.0.3",
