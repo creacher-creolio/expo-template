@@ -1,6 +1,15 @@
 ---
 description: when creating buttons, pressables and other elements with onpress
-globs: 
+globs:
 alwaysApply: false
 ---
 - When creating buttons, pressables and other elements with onpress, if placed in a header, such as Stack.Screen options headerRight, use onPressIn instead of onPress
+- Use onPressIn for header buttons (e.g., Stack.Screen options headerRight)
+- Implement haptic feedback for important interactions using expo-haptics
+- Add visual feedback for press states with pressed:className in NativeWind
+- Debounce rapid press events to prevent duplicate actions
+- Use Pressable over TouchableOpacity for more control over press states
+- Implement proper loading states during async onPress operations
+- Add accessibility focus states for keyboard navigation
+- Ensure press targets are at least 44×44 points for better usability
+- Use hitSlop to expand the touchable area of small elements

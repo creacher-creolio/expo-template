@@ -1,8 +1,16 @@
 ---
 description: testing
-globs: 
+globs:
 alwaysApply: false
 ---
-- Write unit tests using Jest and React Native Testing Library.
-- Use Expo's testing tools for running tests in different environments.
-- Consider snapshot testing for components to ensure UI consistency.
+- Write unit tests for utility functions with Jest
+- Use React Native Testing Library for component testing
+- Create integration tests for critical user flows
+- Implement mock services for API and native module tests
+- Test for accessibility issues in component tests
+- Create snapshot tests for UI components
+- Test different device sizes and orientations
+- Implement E2E tests with Detox for critical paths
+- Test error states and edge cases thoroughly
+- Use test-driven development for complex features
+- Create proper test fixtures and factories

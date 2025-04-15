@@ -1,9 +1,14 @@
 ---
 description: react: state management
-globs: 
+globs:
 alwaysApply: false
 ---
-- Use React Context and useReducer for managing global state.
-- Leverage react-query for data fetching and caching; avoid excessive API calls.
-- For complex state management, consider using Zustand.
-- Handle URL search parameters using libraries like expo-linking.
+- Use Legend State as the primary state management solution for global state
+- Use React's useState for simple component-local state only
+- Implement React Query (TanStack Query) for server state management if using a server--otherwise, Supabase
+- Keep API request logic and data transformation separate from UI components
+- Create custom hooks to encapsulate and reuse state logic
+- Follow atomic pattern for state composition and organization
+- Use optimistic updates for better UX during async operations
+- Avoid prop drilling by leveraging Legend State observables
+- [legend-state.mdc](mdc:.cursor/rules/legend-state.mdc)

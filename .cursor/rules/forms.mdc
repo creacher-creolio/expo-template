@@ -1,0 +1,15 @@
+---
+description: forms
+globs: 
+alwaysApply: false
+---
+- Use React Hook Form for form state management and validation
+- Implement Zod schemas for type-safe form validation
+- Create custom form components that integrate with React Hook Form
+- Handle keyboard behavior properly with KeyboardAvoidingView
+- Add proper error messages and validation feedback
+- Implement controlled inputs with appropriate keyboard types
+- Use form context to share form state between components
+- Implement proper form submission states (loading, success, error)
+- Test form validation edge cases thoroughly
+- Support form accessibility with proper labels and error announcements

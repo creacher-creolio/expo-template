@@ -3,14 +3,14 @@ description: react native
 globs: 
 alwaysApply: false
 ---
-- Use functional components with React Hooks instead of class components.
-- Ensure all navigation-related code uses 'react-navigation' conventions if applicable.
-- Include proper error boundaries for components that fetch data.
+- Use functional components with hooks instead of class components
+- Ensure UI adapts to different screen sizes and orientations
+- Use Expo SDK features instead of native modules when available
+- Handle platform-specific code with Platform.OS or platform-specific file extensions
+- Use proper keyboard handling with KeyboardAvoidingView and dismissKeyboard
+- Leverage Expo's optimized APIs for notifications, updates, and assets
+- Test on both iOS and Android regularly during development
+- Prefer FlatList or SectionList over ScrollView for long lists
+- Use proper error boundaries for components that fetch data
 - Use the components already found in the components folder whenever possible; use NativeWind for styling.
 - Leverage react-native-reanimated and react-native-gesture-handler for performant animations, gestures & micro-interactions.
-
-
-
-
-
-

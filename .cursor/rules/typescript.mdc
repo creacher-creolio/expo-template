@@ -1,9 +1,16 @@
 ---
-description: 
+description: Typescript
 globs: *.ts,*.tsx
 alwaysApply: false
 ---
-- Use explicit return types for all functions unless the return type is obvious (e.g., simple arrow functions).
-- Prefer interfaces over types for object definitions unless type unions or intersections are needed.
-- Enforce strong typing. Avoid using "any" type unless absolutely necessary and justified; suggest specific types or generics instead.
-- Suggest using optional chaining (?.) and nullish coalescing (??) where applicable.
+- Use explicit return types for non-trivial functions
+- Define proper interfaces for component props and state
+- Create dedicated type files (types.ts) for shared types
+- Prefer interfaces over types for object shapes
+- Avoid any type; use unknown for truly dynamic values
+- Use type guards for narrowing types (is, as, in)
+- Leverage TypeScript utility types (Partial, Pick, Omit, etc.)
+- Use optional chaining (?.) and nullish coalescing (??)
+- Create reusable, generic components with proper typing
+- Implement proper error typing for try/catch blocks
+- Use strict null checks and non-null assertion with caution

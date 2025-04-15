@@ -1,13 +1,17 @@
 ---
 description: error handling and validation
-globs: 
+globs:
 alwaysApply: false
 ---
-- Use Zod for runtime validation and error handling.
-- Implement proper error logging using Sentry.
-- Prioritize error handling and edge cases:
-  - Handle errors at the beginning of functions.
-  - Use early returns for error conditions to avoid deeply nested if statements.
-  - Avoid unnecessary else statements; use if-return pattern instead.
-  - Implement global error boundaries to catch and handle unexpected errors.
-- Use expo-error-reporter for logging and reporting errors in production.
+- Use Zod for runtime type validation and schema definition
+- Implement proper try/catch blocks for async operations
+- Create custom error boundaries for critical components
+- Use early returns for error conditions to avoid deep nesting
+- Implement user-friendly error messages and recovery options
+- Log errors to monitoring services (e.g., Sentry) in production
+- Create custom error components with appropriate visual feedback
+- Handle network errors gracefully with retry mechanisms
+- Validate form inputs with clear feedback messages
+- [forms.mdc](mdc:.cursor/rules/forms.mdc)
+- Implement fallback UI for error states
+- Test error cases thoroughly in unit and integration tests

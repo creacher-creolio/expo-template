@@ -1,10 +1,16 @@
 ---
-description: 
+description: apply to any files in the components folder
 globs: components/*.tsx
 alwaysApply: false
 ---
-- Never add to nor edit components in the components/ui folder directly. If needed, create a wrapper component. 
-- All reusable components must accept a 'props' interface with explicit TypeScript types.
-- Suggest splitting large components into smaller, reusable ones if they exceed 150 lines.
-- Include defaultProps or optional props with sensible defaults where applicable.
-- Export reusable components individually from an index file (e.g., export { AppButton } from './AppButton').
+- Create purpose-specific components that do one thing well
+- Split large components into smaller ones if they exceed 150 lines
+- Apply appropriate React Native Reusables when available
+- [react-native-reusables.mdc](mdc:.cursor/rules/react-native-reusables.mdc)
+- Implement proper TypeScript interfaces for all component props
+- Add appropriate accessibility attributes (accessible, accessibilityLabel)
+- Create component test files alongside component files when needed
+- Export components individually from barrel files (index.ts)
+- Implement appropriate loading and error states for all components
+- Leverage React.memo() for performance optimization when appropriate
+- Never modify components in the ui/ directory directly; create wrappers instead

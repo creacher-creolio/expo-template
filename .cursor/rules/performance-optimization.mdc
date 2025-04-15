@@ -1,6 +1,6 @@
 ---
 description: performance optimization
-globs: 
+globs:
 alwaysApply: false
 ---
 - Minimize the use of useState and useEffect; prefer context and reducers for state management.
@@ -8,3 +8,14 @@ alwaysApply: false
 - Optimize images: use WebP format where supported, include size data, implement lazy loading with expo-image.
 - Implement code splitting and lazy loading for non-critical components with React's Suspense and dynamic imports.
 - Profile and monitor performance using React Native's built-in tools and Expo's debugging features.
+- Use memo(), useCallback(), and useMemo() for expensive operations
+- Implement list virtualization with FlatList/SectionList for long lists
+- Apply proper key properties to list items based on unique identifiers
+- Use Image component with appropriate resizeMode and dimensions
+- Implement lazy loading for off-screen content and heavy components
+- Avoid anonymous function creation in render methods
+- Optimize animations with useAnimatedStyle from react-native-reanimated
+- Measure and optimize component render times with Performance API
+- Implement proper memoization for Legend State selectors
+- Use InteractionManager for heavy operations after animations complete
+- Profile app performance regularly with Expo Dev Tools or React DevTools

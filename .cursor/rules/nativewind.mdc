@@ -1,0 +1,14 @@
+---
+description: NativeWind
+globs: 
+alwaysApply: false
+---
+- Use className prop instead of StyleSheet for all styling (e.g., className="bg-blue-500 p-4")
+- Create consistent spacing with p-[number] and m-[number] classes
+- Implement responsive layouts with flex, justify, and items classes
+- Use dark: prefix for dark mode styling (e.g., className="bg-white dark:bg-black")
+- Group related styles into reusable className strings for consistency
+- Add tw-prefixed comments above complex className strings to explain intent
+- Use dynamic classes with template literals for conditional styling
+- Extend tailwind.config.js for custom colors, spacing, or components
+- Avoid inline styles when NativeWind classes would work

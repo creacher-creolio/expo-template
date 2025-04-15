@@ -1,9 +1,16 @@
 ---
-description: 
+description: Styling
 globs: *.tsx,tailwind.config.js
 alwaysApply: false
 ---
 - Use NativeWind className syntax (e.g., className="bg-blue-500 text-white") for styling.
+- [nativewind.mdc](mdc:.cursor/rules/nativewind.mdc)
+- Use consistent color palette from tailwind.config.js theme
+- Maintain a clear visual hierarchy with consistent spacing and sizing
+- Implement responsive design with flex layouts and NativeWind breakpoints
+- Style for both light and dark modes using dark: prefix classes
+- Create consistent typography with text-* classes for size and weight
+- Group related styles into reusable className strings for consistency
 - [images.mdc](mdc:.cursor/rules/images.mdc)
 - Avoid inline styles when NativeWind classes can be used instead.
 - Suggest grouping related styles into reusable className strings for consistency.
