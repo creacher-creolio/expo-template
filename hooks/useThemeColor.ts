@@ -4,7 +4,6 @@
  */
 
 import { NAV_THEME } from "@/constants/colors";
-
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 export function useThemeColor(
