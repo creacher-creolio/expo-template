@@ -6,7 +6,7 @@ export function iconWithClassName(icon: LucideIcon) {
         className: {
             target: "style",
             defaultProps: {
-                className: "text-black dark:text-white",
+                className: "text-foreground",
             },
             nativeStyleToProp: {
                 color: true,
