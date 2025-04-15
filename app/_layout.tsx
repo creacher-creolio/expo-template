@@ -6,10 +6,10 @@ import * as React from "react";
 import { Platform } from "react-native";
 import "react-native-reanimated";
 
-import { NAV_THEME } from "~/constants/colors";
-import "~/global.css";
-import { setAndroidNavigationBar } from "~/lib/android-navigation-bar";
-import { useColorScheme } from "~/lib/useColorScheme";
+import { NAV_THEME } from "@/constants/colors";
+import "@/global.css";
+import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
+import { useColorScheme } from "@/lib/useColorScheme";
 
 const LIGHT_THEME: Theme = {
     ...DefaultTheme,

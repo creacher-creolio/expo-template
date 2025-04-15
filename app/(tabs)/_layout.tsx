@@ -1,9 +1,9 @@
 import { Tabs } from "expo-router";
 
-import { ThemeToggle } from "~/components/ThemeToggle";
-import { NAV_THEME } from "~/constants/colors";
-import { HomeIcon } from "~/lib/icons";
-import { useColorScheme } from "~/lib/useColorScheme";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { NAV_THEME } from "@/constants/colors";
+import { HomeIcon } from "@/lib/icons";
+import { useColorScheme } from "@/lib/useColorScheme";
 
 export default function TabsLayout() {
     const { isDarkColorScheme } = useColorScheme();
