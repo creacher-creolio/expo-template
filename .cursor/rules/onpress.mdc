@@ -1,0 +1,6 @@
+---
+description: when creating buttons, pressables and other elements with onpress
+globs: 
+alwaysApply: false
+---
+- When creating buttons, pressables and other elements with onpress, if placed in a header, such as Stack.Screen options headerRight, use onPressIn instead of onPress

@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.ts,*.tsx
+alwaysApply: false
+---
+- Use explicit return types for all functions unless the return type is obvious (e.g., simple arrow functions).
+- Prefer interfaces over types for object definitions unless type unions or intersections are needed.
+- Enforce strong typing. Avoid using "any" type unless absolutely necessary and justified; suggest specific types or generics instead.
+- Suggest using optional chaining (?.) and nullish coalescing (??) where applicable.

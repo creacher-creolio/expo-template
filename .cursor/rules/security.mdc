@@ -1,0 +1,9 @@
+---
+description: security
+globs: 
+alwaysApply: false
+---
+- Sanitize user inputs to prevent XSS attacks.
+- Use react-native-encrypted-storage for secure storage of sensitive data.
+- Ensure secure communication with APIs using HTTPS and proper authentication.
+- Use Expo's Security guidelines to protect the app: https://docs.expo.dev/guides/security/

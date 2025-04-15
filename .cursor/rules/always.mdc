@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- Use kebab-case for file/folder names, PascalCase for component names and camelCase for variables/functions.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Adhere to the prettier formatting rules found in .prettierrc.js
+- Suggest adding comments for complex logic or non-obvious code.
+- Enforce consistent file structure: 'app/', 'components/', 'utils/', 'hooks/', etc.
+- Use absolute imports with a base path (e.g., 'import { AppButton } from '@/components'').
+- Ensure high accessibility (a11y)/ADA-compliant standards using ARIA roles and native accessibility props.

@@ -1,0 +1,10 @@
+---
+description: 
+globs: *.tsx,tailwind.config.js
+alwaysApply: false
+---
+- Use NativeWind className syntax (e.g., className="bg-blue-500 text-white") for styling.
+- [images.mdc](mdc:.cursor/rules/images.mdc)
+- Avoid inline styles when NativeWind classes can be used instead.
+- Suggest grouping related styles into reusable className strings for consistency.
+- Encourage responsive design with classes like 'flex-1', 'w-full', or 'h-screen'.

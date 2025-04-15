@@ -1,0 +1,10 @@
+---
+description: performance optimization
+globs: 
+alwaysApply: false
+---
+- Minimize the use of useState and useEffect; prefer context and reducers for state management.
+- Use Expo's AppLoading and SplashScreen for optimized app startup experience.
+- Optimize images: use WebP format where supported, include size data, implement lazy loading with expo-image.
+- Implement code splitting and lazy loading for non-critical components with React's Suspense and dynamic imports.
+- Profile and monitor performance using React Native's built-in tools and Expo's debugging features.

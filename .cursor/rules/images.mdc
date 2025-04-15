@@ -1,0 +1,6 @@
+---
+description: when creating/editing Images
+globs: 
+alwaysApply: false
+---
+- React Native Image components require manual width and height styling, not NativeWind's w- or h- classes, though other NativeWind styles can still be applied.

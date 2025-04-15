@@ -1,0 +1,16 @@
+---
+description: react native
+globs: 
+alwaysApply: false
+---
+- Use functional components with React Hooks instead of class components.
+- Ensure all navigation-related code uses 'react-navigation' conventions if applicable.
+- Include proper error boundaries for components that fetch data.
+- Use the components already found in the components folder whenever possible; use NativeWind for styling.
+- Leverage react-native-reanimated and react-native-gesture-handler for performant animations, gestures & micro-interactions.
+
+
+
+
+
+

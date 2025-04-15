@@ -1,0 +1,8 @@
+---
+description: testing
+globs: 
+alwaysApply: false
+---
+- Write unit tests using Jest and React Native Testing Library.
+- Use Expo's testing tools for running tests in different environments.
+- Consider snapshot testing for components to ensure UI consistency.

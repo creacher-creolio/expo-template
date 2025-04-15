@@ -1,0 +1,10 @@
+---
+description: 
+globs: components/*.tsx
+alwaysApply: false
+---
+- Never add to nor edit components in the components/ui folder directly. If needed, create a wrapper component. 
+- All reusable components must accept a 'props' interface with explicit TypeScript types.
+- Suggest splitting large components into smaller, reusable ones if they exceed 150 lines.
+- Include defaultProps or optional props with sensible defaults where applicable.
+- Export reusable components individually from an index file (e.g., export { AppButton } from './AppButton').

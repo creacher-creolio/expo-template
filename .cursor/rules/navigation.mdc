@@ -1,0 +1,9 @@
+---
+description: react native navigation
+globs: 
+alwaysApply: false
+---
+- Use react-navigation for routing and navigation; follow its best practices for stack, tab, and drawer navigators.
+- Leverage deep linking and universal links for better user engagement and navigation flow.
+- Use dynamic routes with expo-router for better navigation handling.
+- router navigation: use the object format with explicit pathname and params
