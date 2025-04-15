@@ -3,12 +3,31 @@ description: NativeWind
 globs: 
 alwaysApply: false
 ---
-- Use className prop instead of StyleSheet for all styling (e.g., className="bg-blue-500 p-4")
+## Basic Usage
+- Use className prop instead of StyleSheet for styling (className="bg-blue-500 p-4")
 - Create consistent spacing with p-[number] and m-[number] classes
 - Implement responsive layouts with flex, justify, and items classes
-- Use dark: prefix for dark mode styling (e.g., className="bg-white dark:bg-black")
+- Use dark: prefix for dark mode styling (className="bg-white dark:bg-black")
+- Avoid inline styles when NativeWind classes would work
+
+## Best Practices
 - Group related styles into reusable className strings for consistency
 - Add tw-prefixed comments above complex className strings to explain intent
 - Use dynamic classes with template literals for conditional styling
-- Extend tailwind.config.js for custom colors, spacing, or components
-- Avoid inline styles when NativeWind classes would work
+
+## Configuration
+- Configure babel plugin in babel.config.js
+- Extend theme in tailwind.config.js for custom design system elements
+- Add custom utilities in tailwind.config.js as needed
+
+## Advanced Usage
+- Create custom variants for platform-specific styling
+- Use NativeWind plugins for advanced functionality
+- Configure content paths in tailwind.config.js to match project structure
+- Setup proper type definitions with typescript
+- Optimize compilation with babel plugin options
+
+## Troubleshooting
+- Rebuild app if style changes aren't reflected
+- Check configuration if className strings aren't applying
+- Refer to NativeWind docs for version-specific features

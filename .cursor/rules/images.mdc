@@ -1,6 +1,16 @@
 ---
 description: when creating/editing Images
-globs: 
+globs:
 alwaysApply: false
 ---
-- React Native Image components require manual width and height styling, not NativeWind's w- or h- classes, though other NativeWind styles can still be applied.
+## Implementation
+- Use Expo's optimized Image component or react-native-fast-image
+- Specify width and height for all images to prevent layout shifts instead of using NativeWind's w- or h- classes
+- Use appropriate resizeMode (cover, contain, etc.)
+- Implement progressive loading for large images
+
+## Performance
+- Compress and optimize images before bundling
+- Use WebP format when possible for better compression
+- Implement proper caching strategies for remote images
+- Consider lazy loading for offscreen images

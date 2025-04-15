@@ -3,12 +3,15 @@ description: Legend State
 globs: 
 alwaysApply: false
 ---
-- Create state atoms in separate files under state/ directory with clear naming
-- Use enableReactTracking() in app entry point for React integration
+## Setup & Structure
+- Create state atoms in separate files under state/ directory
+- Enable React tracking with enableReactTracking() in app entry point
+- Structure complex state with normalized nested objects and arrays
+
+## Best Practices
 - Prefer observable selectors over derived atoms for computed values
-- Use reactive wrappers (e.g., observer, useSelector) for state consuming components
+- Use reactive wrappers (observer, useSelector) for state consumption
 - Implement task atoms for async operations instead of useEffect
-- Structure complex state with nested objects and arrays when appropriate
-- Use the when() method for conditional state derivations
-- Add watchers to atoms for side effects instead of useEffect
+- Use when() method for conditional state derivations
+- Add watchers for side effects instead of useEffect
 - Keep state normalized to avoid data duplication

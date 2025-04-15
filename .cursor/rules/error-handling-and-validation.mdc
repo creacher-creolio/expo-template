@@ -3,15 +3,20 @@ description: error handling and validation
 globs:
 alwaysApply: false
 ---
-- Use Zod for runtime type validation and schema definition
-- Implement proper try/catch blocks for async operations
-- Create custom error boundaries for critical components
-- Use early returns for error conditions to avoid deep nesting
-- Implement user-friendly error messages and recovery options
-- Log errors to monitoring services (e.g., Sentry) in production
-- Create custom error components with appropriate visual feedback
-- Handle network errors gracefully with retry mechanisms
-- Validate form inputs with clear feedback messages
-- [forms.mdc](mdc:.cursor/rules/forms.mdc)
-- Implement fallback UI for error states
-- Test error cases thoroughly in unit and integration tests
+## Error Handling
+- Implement error boundaries for critical components
+- Use try/catch blocks for error-prone operations
+- Log errors with appropriate context information
+- Create user-friendly error messages for display
+
+## Validation
+- Use zod for schema validation in forms and data
+- Implement client-side validation before submission
+- Show inline validation errors with clear messaging
+- Validate user input as early as possible
+
+## Error Recovery
+- Implement auto-retry for network operations
+- Create graceful fallbacks for failed operations
+- Preserve user input during form submission errors
+- Provide clear recovery instructions for users

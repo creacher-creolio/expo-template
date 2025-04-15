@@ -1,16 +1,25 @@
 ---
 description: react native
-globs: 
+globs:
 alwaysApply: false
 ---
+## Architecture
 - Use functional components with hooks instead of class components
-- Ensure UI adapts to different screen sizes and orientations
-- Use Expo SDK features instead of native modules when available
-- Handle platform-specific code with Platform.OS or platform-specific file extensions
-- Use proper keyboard handling with KeyboardAvoidingView and dismissKeyboard
-- Leverage Expo's optimized APIs for notifications, updates, and assets
-- Test on both iOS and Android regularly during development
-- Prefer FlatList or SectionList over ScrollView for long lists
 - Use proper error boundaries for components that fetch data
-- Use the components already found in the components folder whenever possible; use NativeWind for styling.
-- Leverage react-native-reanimated and react-native-gesture-handler for performant animations, gestures & micro-interactions.
+- Handle platform-specific code with Platform.OS or platform-specific file extensions
+
+## UI/UX
+- Ensure UI adapts to different screen sizes and orientations
+- Use proper keyboard handling with KeyboardAvoidingView and dismissKeyboard
+- Prefer FlatList or SectionList over ScrollView for long lists
+- Implement responsive layouts with flex components
+
+## Performance
+- Test on both iOS and Android regularly during development
+- Use Expo's optimized APIs when available
+- Leverage Reanimated and Gesture Handler for animations and interactions
+
+## Project Specifics
+- Use components from the components folder whenever possible
+- Integrate with NativeWind for styling (see styling.mdc)
+- Implement safe area management for notches and dynamic island

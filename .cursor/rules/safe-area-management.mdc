@@ -1,9 +1,15 @@
 ---
 description: react native: safe area management
-globs: 
+globs:
 alwaysApply: false
 ---
-- Use SafeAreaProvider from react-native-safe-area-context to manage safe areas globally in your app.
-- Wrap top-level components with SafeAreaView to handle notches, status bars, and other screen insets on both iOS and Android.
-- Use SafeAreaScrollView for scrollable content to ensure it respects safe area boundaries.
-- Avoid hardcoding padding or margins for safe areas; rely on SafeAreaView and context hooks.
+## Implementation
+- Use SafeAreaView for root-level screens or containers
+- Apply useSafeAreaInsets() for manual inset management
+- Use NativeWind's pt-safe and pb-safe for inset-aware padding
+- Handle landscape and portrait orientations appropriately
+
+## Device Compatibility
+- Account for notches, dynamic islands, and rounded corners
+- Test on different device sizes and orientations
+- Ensure content remains accessible in all device states

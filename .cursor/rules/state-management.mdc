@@ -3,12 +3,24 @@ description: react: state management
 globs:
 alwaysApply: false
 ---
-- Use Legend State as the primary state management solution for global state
-- Use React's useState for simple component-local state only
-- Implement React Query (TanStack Query) for server state management if using a server--otherwise, Supabase
-- Keep API request logic and data transformation separate from UI components
-- Create custom hooks to encapsulate and reuse state logic
-- Follow atomic pattern for state composition and organization
-- Use optimistic updates for better UX during async operations
-- Avoid prop drilling by leveraging Legend State observables
-- [legend-state.mdc](mdc:.cursor/rules/legend-state.mdc)
+## Architecture
+- Use Legend State as primary state management solution
+- Keep UI state local to components when possible
+- Lift state up only when necessary for sharing
+- Separate UI state from application state
+
+## Data Flow
+- Implement unidirectional data flow
+- Use context providers for shared state
+- Avoid prop drilling with proper state architecture
+- Handle asynchronous state updates with appropriate patterns
+
+## Best Practices
+- Normalize complex state structures
+- Implement proper loading and error states
+- Use immutable patterns for state updates
+- Add appropriate TypeScript types for all state
+- Use useState for simple component-local state
+- Implement React Query for server state
+- Create custom hooks to encapsulate state logic
+- Follow atomic pattern for state composition

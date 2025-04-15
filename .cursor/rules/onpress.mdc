@@ -3,13 +3,20 @@ description: when creating buttons, pressables and other elements with onpress
 globs:
 alwaysApply: false
 ---
-- When creating buttons, pressables and other elements with onpress, if placed in a header, such as Stack.Screen options headerRight, use onPressIn instead of onPress
-- Use onPressIn for header buttons (e.g., Stack.Screen options headerRight)
-- Implement haptic feedback for important interactions using expo-haptics
-- Add visual feedback for press states with pressed:className in NativeWind
-- Debounce rapid press events to prevent duplicate actions
-- Use Pressable over TouchableOpacity for more control over press states
-- Implement proper loading states during async onPress operations
-- Add accessibility focus states for keyboard navigation
-- Ensure press targets are at least 44×44 points for better usability
-- Use hitSlop to expand the touchable area of small elements
+## Implementation
+- Use Pressable instead of TouchableOpacity for better control
+- Add haptic feedback for important interactions (react-native-haptic-feedback)
+- Include visual feedback with opacity/scale changes on press
+- Use onPressIn for header buttons (Stack.Screen options headerRight)
+
+## Accessibility
+- Add accessibilityLabel and accessibilityHint to interactive elements
+- Set proper accessibilityRole (button, link, etc.)
+- Make touch targets minimum 44×44 points
+- Use hitSlop to expand touchable area of small elements
+
+## Best Practices
+- Debounce rapid presses to prevent double submissions
+- Disable buttons during loading states with visual indicators
+- Add ripple effect on Android and opacity changes on iOS
+- Implement proper loading states during async operations

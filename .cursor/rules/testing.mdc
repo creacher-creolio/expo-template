@@ -3,14 +3,26 @@ description: testing
 globs:
 alwaysApply: false
 ---
-- Write unit tests for utility functions with Jest
-- Use React Native Testing Library for component testing
-- Create integration tests for critical user flows
-- Implement mock services for API and native module tests
-- Test for accessibility issues in component tests
+## Test Structure
+- Write tests alongside the code they test
+- Group tests logically with describe blocks
+- Test component behavior, not implementation details
+- Follow AAA pattern: Arrange, Act, Assert
+
+## Test Coverage
+- Test critical user flows and edge cases
 - Create snapshot tests for UI components
+- Test error handling and fallback states
+- Create integration tests for complex workflows
 - Test different device sizes and orientations
+- Test for accessibility issues in component tests
 - Implement E2E tests with Detox for critical paths
-- Test error states and edge cases thoroughly
+
+## Best Practices
+- Use Jest for utility function tests
+- Use React Native Testing Library for component testing
+- Mock external dependencies and API calls
+- Keep tests independent and idempotent
 - Use test-driven development for complex features
 - Create proper test fixtures and factories
+- Implement mock services for API and native module tests

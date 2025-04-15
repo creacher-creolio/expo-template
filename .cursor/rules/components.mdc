@@ -3,14 +3,19 @@ description: apply to any files in the components folder
 globs: components/*.tsx
 alwaysApply: false
 ---
+## Architecture
 - Create purpose-specific components that do one thing well
-- Split large components into smaller ones if they exceed 150 lines
-- Apply appropriate React Native Reusables when available
-- [react-native-reusables.mdc](mdc:.cursor/rules/react-native-reusables.mdc)
-- Implement proper TypeScript interfaces for all component props
-- Add appropriate accessibility attributes (accessible, accessibilityLabel)
-- Create component test files alongside component files when needed
+- Split components into smaller ones if they exceed 150 lines
 - Export components individually from barrel files (index.ts)
-- Implement appropriate loading and error states for all components
-- Leverage React.memo() for performance optimization when appropriate
-- Never modify components in the ui/ directory directly; create wrappers instead
+- Never modify components in the ui/ directory directly; create wrappers
+
+## Implementation
+- Implement TypeScript interfaces for all component props
+- Add appropriate accessibility attributes (accessible, accessibilityLabel)
+- Apply React Native Reusables when available
+- Implement loading, error, and empty states for data-dependent components
+
+## Performance
+- Use React.memo() for expensive components that re-render often
+- Avoid anonymous function creation in render methods
+- Implement proper memoization for callbacks and derived values

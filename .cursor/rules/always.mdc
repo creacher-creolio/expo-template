@@ -1,13 +1,31 @@
 ---
 description: always use these rules
-globs:
+globs: 
 alwaysApply: true
 ---
-- Use kebab-case for file/folder names, PascalCase for component names and camelCase for variables/functions
-- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
-- Adhere to the prettier formatting rules found in .prettierrc.js
+## Code Style
+- Use kebab-case for file/folder names, PascalCase for components, camelCase for variables/functions
+- Keep files under 200 lines and functions under 10 lines
+- Use meaningful variable names (10-30 chars) with auxiliary verbs (isLoading, hasError)
+- Place important functions at the top, subfunctions below
+- Add file path comment at the top of each file
+
+## Documentation
 - Add comments for complex logic or non-obvious code
-- Follow consistent file structure: 'app/', 'components/', 'utils/', 'hooks/', etc.
-- Use absolute imports with '@/' prefix (e.g., 'import { AppButton } from '@/components')
-- Ensure accessibility (a11y) standards using ARIA roles and React Native accessibility props
-- Optimize for both light and dark themes using NativeWind's dark: prefix
+- All non-self-explanatory functions should have brief explanatory comments
+- Preserve existing comments unless obsolete
+
+## Project Structure
+- Follow structure: 'app/', 'components/', 'utils/', 'hooks/', etc.
+- Use absolute imports with '@/' prefix (import { Button } from '@/components')
+
+## Development
+- Adhere to prettier formatting rules in .prettierrc.js
+- Ensure a11y standards with ARIA roles and React Native accessibility props
+- Check for type issues after making changes
+- Add micro interactions to UI elements
+- Use package versions specified in package.json/requirements.txt
+
+## Environment
+- Use PowerShell syntax for terminal commands on Windows
+- Use pnpm instead of npm

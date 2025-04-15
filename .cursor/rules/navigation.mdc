@@ -3,16 +3,20 @@ description: react native navigation
 globs:
 alwaysApply: false
 ---
-- Use react-navigation for routing and navigation; follow its best practices for stack, tab, and drawer navigators.
-- Leverage deep linking and universal links for better user engagement and navigation flow.
-- Use dynamic routes with expo-router for better navigation handling.
-- Use Expo Router for file-based routing and navigation when possible
-- Organize routes logically in app/ directory matching feature hierarchy
-- Implement typesafe navigation with proper parameter typing
-- Use layout files (_layout.tsx) for consistent UI across route groups
-- Leverage linking configuration for deep links and universal URLs
-- Add descriptive route names and consistent back navigation
-- Handle navigation state persistence for better app restoration
-- Implement modals with specific navigation patterns (e.g., sheet)
-- Use router.navigate() with the object format for explicit pathname and params
-- Implement proper loading and error states during navigation
+## Structure
+- Use React Navigation as the navigation library
+- Implement Stack, Tab, and Drawer navigation as needed
+- Organize navigation in a dedicated navigation/ directory
+- Create type-safe route names with TypeScript
+
+## Implementation
+- Use navigation hooks (useNavigation, useRoute) instead of props
+- Pass minimal data through route params
+- Implement deep linking for important screens
+- Handle authentication flows with proper navigation guards
+
+## UX/Performance
+- Add transition animations for navigation actions
+- Implement proper loading states during navigation
+- Prefetch data for anticipated navigation targets
+- Use header buttons with proper touch feedback

@@ -3,14 +3,26 @@ description: Typescript
 globs: *.ts,*.tsx
 alwaysApply: false
 ---
-- Use explicit return types for non-trivial functions
-- Define proper interfaces for component props and state
+## Type Definitions
+- Define interfaces/types in separate files when reused across components
+- Use explicit type annotations for function parameters and returns
+- Prefer interfaces for objects that can be extended
+- Use union types for values with a finite set of options
 - Create dedicated type files (types.ts) for shared types
-- Prefer interfaces over types for object shapes
-- Avoid any type; use unknown for truly dynamic values
-- Use type guards for narrowing types (is, as, in)
-- Leverage TypeScript utility types (Partial, Pick, Omit, etc.)
-- Use optional chaining (?.) and nullish coalescing (??)
-- Create reusable, generic components with proper typing
+
+## Best Practices
+- Avoid any and unknown types unless absolutely necessary
+- Use generics for reusable components and utilities
+- Implement proper discriminated unions for complex state
+- Add index signatures for dynamic object properties
 - Implement proper error typing for try/catch blocks
 - Use strict null checks and non-null assertion with caution
+- Leverage TypeScript utility types (Partial, Pick, Omit, etc.)
+- Use optional chaining (?.) and nullish coalescing (??)
+- Use type guards for narrowing types (is, as, in)
+
+## Project Setup
+- Ensure tsconfig.json has strict mode enabled
+- Configure path aliases in tsconfig.json for clean imports
+- Keep type definitions in sync with backend API contracts
+- Utilize React Native specific type definitions

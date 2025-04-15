@@ -3,15 +3,23 @@ description: Styling
 globs: *.tsx,tailwind.config.js
 alwaysApply: false
 ---
-- Use NativeWind className syntax (e.g., className="bg-blue-500 text-white") for styling.
-- [nativewind.mdc](mdc:.cursor/rules/nativewind.mdc)
-- Use consistent color palette from tailwind.config.js theme
-- Maintain a clear visual hierarchy with consistent spacing and sizing
-- Implement responsive design with flex layouts and NativeWind breakpoints
-- Style for both light and dark modes using dark: prefix classes
-- Create consistent typography with text-* classes for size and weight
-- Group related styles into reusable className strings for consistency
-- [images.mdc](mdc:.cursor/rules/images.mdc)
-- Avoid inline styles when NativeWind classes can be used instead.
-- Suggest grouping related styles into reusable className strings for consistency.
-- Encourage responsive design with classes like 'flex-1', 'w-full', or 'h-screen'.
+## NativeWind
+- Use className prop for styling (className="bg-blue-500 p-4") instead of StyleSheet
+- Use dark: prefix for dark mode (className="bg-white dark:bg-black")
+- Extend tailwind.config.js for custom colors, spacing, or components
+
+## Best Practices
+- Maintain consistent spacing with p-[number] and m-[number] classes
+- Create responsive layouts with flex, justify, and items classes
+- Group related styles into reusable className strings
+- Use dynamic classes with template literals for conditional styling
+- Add tw-prefixed comments for complex className strings
+- Avoid inline styles when NativeWind classes would work
+
+## Typography & Colors
+- Use consistent typography with text-* classes for size and weight
+- Use color palette from tailwind.config.js theme
+
+## Images
+- Use appropriate resizeMode and dimensions for images
+- Implement proper aspect ratios with NativeWind classes
