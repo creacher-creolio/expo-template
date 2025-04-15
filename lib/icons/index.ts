@@ -1,0 +1,11 @@
+export { Book as BookIcon } from "./Book";
+export { BookOpen as BookOpenIcon } from "./BookOpen";
+export { Check as CheckIcon } from "./Check";
+export { ChevronDown as ChevronDownIcon } from "./ChevronDown";
+export { ChevronRight as ChevronRightIcon } from "./ChevronRight";
+export { ChevronUp as ChevronUpIcon } from "./ChevronUp";
+export { Home as HomeIcon } from "./Home";
+export { Info as InfoIcon } from "./Info";
+export { MoonStar as MoonStarIcon } from "./MoonStar";
+export { Sun as SunIcon } from "./Sun";
+export { X as XIcon } from "./X";

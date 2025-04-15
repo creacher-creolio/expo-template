@@ -1,15 +1,51 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+############################ - FULLSTACK/EITHER - ############################
+
+# IDE
+**/.idea
+**/.vscode
 
 # dependencies
-node_modules/
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Expo
-.expo/
-dist/
-web-build/
-expo-env.d.ts
+# macOS
+.DS_Store
+*.pem
 
-# Native
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+############################ - BACKEND - ############################
+
+# Python virtual environments
+**/env
+**/venv
+
+# caches
+**/__pycache__
+
+############################ - FRONTEND - ############################
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+/false
+
+# react native
 *.orig.*
 *.jks
 *.p8
@@ -17,20 +53,37 @@ expo-env.d.ts
 *.key
 *.mobileprovision
 
-# Metro
+# expo
+.expo/
+dist/
+web-build/
+
+# metro
 .metro-health-check*
 
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
+# Example apps
+app-example
 
-# macOS
-.DS_Store
-*.pem
+# production
+/build
 
-# local env files
+# env files (can opt-in for committing if needed)
+.env*
 .env*.local
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
+expo-env.d.ts
+
+# vercel
+.vercel
+
+############################ - PROJECT-SPECIFIC - ############################
+
+# Optional
+# **/.cursor
+
+# Project-specific
+**/.resources
+**/.top_level
