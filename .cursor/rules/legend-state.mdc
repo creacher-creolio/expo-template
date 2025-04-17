@@ -1,17 +1,17 @@
 ---
-description: Legend State
+description: 
 globs: 
 alwaysApply: false
 ---
 ## Setup & Structure
-- Create state atoms in separate files under state/ directory
-- Enable React tracking with enableReactTracking() in app entry point
-- Structure complex state with normalized nested objects and arrays
+- Create state atoms in separate files under a `state/` directory for modularity (e.g., `state/settings.ts` for `theme$`).
+- Enable React tracking with `enableReactTracking({ auto: true })` in the app entry point (e.g., `index.js`) for prototyping, but consider `observer` for production performance.
+- Structure complex state with normalized nested objects and arrays, using unique IDs for array items to optimize reactivity and persistence.
 
 ## Best Practices
-- Prefer observable selectors over derived atoms for computed values
-- Use reactive wrappers (observer, useSelector) for state consumption
-- Implement task atoms for async operations instead of useEffect
-- Use when() method for conditional state derivations
-- Add watchers for side effects instead of useEffect
-- Keep state normalized to avoid data duplication
+- Prefer `computed` observables (e.g., `observable(() => ...)` over separate atoms for derived values, unless persistence or two-way linking is required.
+- Use reactive wrappers like `observer` (HOC) for components and `useSelector` (hook) for computed state consumption in React.
+- Handle async operations with async observables (e.g., `observable(() => fetch(...))`) or `synced` configurations instead of `useEffect`.
+- Use the `when()` method for conditional state derivations or to await truthy conditions.
+- Implement `observe()` for side effects (e.g., logging, updates) instead of `useEffect`.
+- Keep state normalized (e.g., `Record<string, Item>` or arrays with IDs) to avoid duplication and improve sync efficiency.

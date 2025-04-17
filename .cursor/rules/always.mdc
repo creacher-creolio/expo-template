@@ -9,6 +9,9 @@ alwaysApply: true
 - Use meaningful variable names (10-30 chars) with auxiliary verbs (isLoading, hasError)
 - Place important functions at the top, subfunctions below
 - Add file path comment at the top of each file
+- Use double quotes
+- Use semi-colons at end of lines
+- Tab width should be 4 spaces; don't use tabs
 
 ## Documentation
 - Add comments for complex logic or non-obvious code
