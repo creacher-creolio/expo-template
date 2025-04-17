@@ -9,8 +9,10 @@
         "ios": "expo start --ios",
         "web": "expo start --web",
         "test": "jest --watchAll",
-        "lint": "expo lint",
-        "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier --write \"**/*.{css,scss,ts,tsx,js,jsx,json,mjs}\"",
+        "lint:init": "expo lint",
+        "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+        "format": "prettier --write \"**/*.{css,scss,ts,tsx,js,jsx,json,mjs}\"",
+        "polish": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier --write \"**/*.{css,scss,ts,tsx,js,jsx,json,mjs}\"",
         "hollow-out": "powershell -Command \"Remove-Item -Path .expo, node_modules, package-lock.json, pnpm-lock.yaml -Force -Recurse\""
     },
     "jest": {
