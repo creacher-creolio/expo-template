@@ -1,6 +1,6 @@
 ---
-description: when using/importing/creating icons
-globs:
+description:
+globs: *.tsx
 alwaysApply: false
 ---
 - First, create a new file in the ~/lib/icons/ directory with the name of the LucideIcon.
@@ -8,7 +8,15 @@ alwaysApply: false
     - Import the Icon from LucideIcon
     - Import the iconWithClassName function
     - Call the iconWithClassName function and pass the icon as its argument
-    - Export the Icon as a named export
+    - Export the Icon
+- Example:
+```
+import { Home } from "lucide-react-native";
+
+import { iconWithClassName } from "./iconWithClassName";
+iconWithClassName(Home);
+export { Home };
+```
 - Then, when importing/referring to the icon in other files, try to use NativeWind classes to define both light and dark mode colors
 
 ## Implementation

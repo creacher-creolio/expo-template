@@ -2,6 +2,7 @@ export { Check as CheckIcon } from "./Check";
 export { ChevronDown as ChevronDownIcon } from "./ChevronDown";
 export { ChevronRight as ChevronRightIcon } from "./ChevronRight";
 export { ChevronUp as ChevronUpIcon } from "./ChevronUp";
+export { DatabaseIcon } from "./DatabaseIcon";
 export { Home as HomeIcon } from "./Home";
 export { Info as InfoIcon } from "./Info";
 export { MoonStar as MoonStarIcon } from "./MoonStar";

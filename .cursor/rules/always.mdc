@@ -4,7 +4,8 @@ globs:
 alwaysApply: true
 ---
 ## Code Style
-- Use kebab-case for file/folder names, PascalCase for components, camelCase for variables/functions
+- Use kebab-case for all file/folder names
+- Use PascalCase for components, camelCase for variables/functions
 - Keep files under 200 lines and functions under 10 lines
 - Use meaningful variable names (10-30 chars) with auxiliary verbs (isLoading, hasError)
 - Place important functions at the top, subfunctions below

@@ -2,7 +2,7 @@ import { Tabs } from "expo-router";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { NAV_THEME } from "@/constants/colors";
-import { HomeIcon } from "@/lib/icons";
+import { HomeIcon, DatabaseIcon } from "@/lib/icons";
 import { useColorScheme } from "@/lib/useColorScheme";
 
 export default function TabsLayout() {
@@ -20,6 +20,13 @@ export default function TabsLayout() {
                 options={{
                     title: "Home",
                     tabBarIcon: () => <HomeIcon className="text-foreground" />,
+                }}
+            />
+            <Tabs.Screen
+                name="supabase"
+                options={{
+                    title: "Supabase",
+                    tabBarIcon: ({ color }) => <DatabaseIcon className="text-foreground" />,
                 }}
             />
         </Tabs>
