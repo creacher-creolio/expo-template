@@ -1,6 +1,11 @@
 {
     "aliases": {
-        "components": "~/components",
-        "lib": "~/lib"
+        "assets": "@/assets",
+        "components": "@/components",
+        "constants": "@/constants",
+        "hooks": "@/hooks",
+        "lib": "@/lib",
+        "stores": "@/stores",
+        "types": "@/types"
     }
 }
