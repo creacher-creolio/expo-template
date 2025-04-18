@@ -1,11 +1,12 @@
 import { useRouter } from "expo-router";
 import * as React from "react";
-import { Alert, View } from "react-native";
+import { View } from "react-native";
 
 import { InputWithIcon, KeyboardSafeArea } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "@/lib/icons";
+import { validateEmail, validatePassword } from "@/lib/validation";
 import { signIn } from "@/services/auth";
 
 export default function SignIn() {
@@ -14,6 +15,8 @@ export default function SignIn() {
     const [password, setPassword] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
+    const [errors, setErrors] = React.useState<Record<string, string | null>>({});
+    const [wasSubmitted, setWasSubmitted] = React.useState(false);
 
     const emailInputRef = React.useRef<any>(null);
     const passwordInputRef = React.useRef<any>(null);
@@ -29,9 +32,37 @@ export default function SignIn() {
         };
     }, []);
 
+    const validateEmailField = (value: string) => {
+        const error = validateEmail(value);
+        setErrors(prev => ({ ...prev, email: error }));
+        return !error;
+    };
+
+    const validatePasswordField = (value: string) => {
+        const error = validatePassword(value);
+        setErrors(prev => ({ ...prev, password: error }));
+        return !error;
+    };
+
+    const handleEmailBlur = () => {
+        if (wasSubmitted) {
+            validateEmailField(email);
+        }
+    };
+
+    const handlePasswordBlur = () => {
+        if (wasSubmitted) {
+            validatePasswordField(password);
+        }
+    };
+
     const handleSignIn = async () => {
-        if (!email || !password) {
-            Alert.alert("Error", "Please fill in all fields");
+        setWasSubmitted(true);
+
+        const isEmailValid = validateEmailField(email);
+        const isPasswordValid = validatePasswordField(password);
+
+        if (!isEmailValid || !isPasswordValid) {
             return;
         }
 
@@ -40,7 +71,10 @@ export default function SignIn() {
             await signIn(email, password);
             router.replace("/(tabs)");
         } catch (error: any) {
-            Alert.alert("Error", error.message || "Failed to sign in");
+            setErrors(prev => ({
+                ...prev,
+                form: error.message || "Failed to sign in",
+            }));
         } finally {
             setIsLoading(false);
         }
@@ -48,24 +82,42 @@ export default function SignIn() {
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
+    const clearEmail = () => {
+        setEmail("");
+        if (wasSubmitted) {
+            validateEmailField("");
+        }
+    };
+
+    const clearPassword = () => {
+        setPassword("");
+        if (wasSubmitted) {
+            validatePasswordField("");
+        }
+    };
+
     return (
-        <KeyboardSafeArea contentContainerClassName="px-4 justify-center">
-            <View className="mb-8 space-y-2">
+        <KeyboardSafeArea contentContainerClassName="px-5 justify-center py-6">
+            <View className="mb-10 space-y-2">
                 <Text className="text-center text-4xl font-bold text-foreground">Welcome Back</Text>
                 <Text className="text-center text-lg text-muted-foreground">Sign in to your account</Text>
             </View>
 
-            <View className="mb-6 space-y-4">
+            <View className="mb-8 flex flex-col gap-5">
                 <InputWithIcon
-                    ref={emailInputRef}
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="Email"
-                    keyboardType="email-address"
                     autoCapitalize="none"
-                    startIcon={<MailIcon className="h-5 w-5 text-muted-foreground" />}
-                    returnKeyType="next"
+                    error={errors.email || ""}
+                    keyboardType="email-address"
+                    onBlur={handleEmailBlur}
+                    onChangeText={setEmail}
+                    onClear={clearEmail}
                     onSubmitEditing={() => passwordInputRef.current?.focus()}
+                    placeholder="Email"
+                    ref={emailInputRef}
+                    returnKeyType="next"
+                    showClearButton
+                    startIcon={<MailIcon className="text-muted-foreground" />}
+                    value={email}
                 />
 
                 <InputWithIcon
@@ -74,20 +126,30 @@ export default function SignIn() {
                     onChangeText={setPassword}
                     placeholder="Password"
                     secureTextEntry={!showPassword}
-                    startIcon={<LockIcon className="h-5 w-5 text-muted-foreground" />}
+                    startIcon={<LockIcon className="text-muted-foreground" />}
                     endIcon={
                         showPassword ? (
-                            <EyeOffIcon className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
+                            <EyeOffIcon className="text-muted-foreground" onPress={togglePasswordVisibility} />
                         ) : (
-                            <EyeIcon className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
+                            <EyeIcon className="text-muted-foreground" onPress={togglePasswordVisibility} />
                         )
                     }
                     returnKeyType="done"
                     onSubmitEditing={handleSignIn}
+                    error={errors.password || ""}
+                    showClearButton
+                    onClear={clearPassword}
+                    onBlur={handlePasswordBlur}
                 />
+
+                {errors.form && (
+                    <View className="px-1">
+                        <Text className="text-sm text-destructive">{errors.form}</Text>
+                    </View>
+                )}
             </View>
 
-            <Button onPress={handleSignIn} disabled={isLoading} className="mb-4 h-12">
+            <Button onPress={handleSignIn} disabled={isLoading} className="mb-6 h-14">
                 <Text>{isLoading ? "Signing in..." : "Sign In"}</Text>
             </Button>
 

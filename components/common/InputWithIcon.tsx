@@ -1,29 +1,66 @@
 import * as React from "react";
-import { View, type TextInputProps } from "react-native";
+import { Pressable, View, type TextInputProps } from "react-native";
 
 import { Input } from "@/components/ui/input";
+import { XIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 
 interface InputWithIconProps extends TextInputProps {
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
+    onClear?: () => void;
+    showClearButton?: boolean;
+    error?: string;
 }
 
 const InputWithIcon = React.forwardRef<React.ElementRef<typeof Input>, InputWithIconProps>(
-    ({ className, startIcon, endIcon, ...props }, ref) => {
+    ({ className, startIcon, endIcon, onClear, showClearButton, value, error, ...props }, ref) => {
+        const showClear = showClearButton && value && value.length > 0;
+
+        const handleClear = () => {
+            if (onClear) {
+                onClear();
+            }
+        };
+
         return (
-            <View className="relative flex w-full items-center">
-                {startIcon && (
-                    <View className="absolute left-3 z-10 flex h-full items-center justify-center">{startIcon}</View>
-                )}
-                <Input
-                    ref={ref}
-                    className={cn("w-full", startIcon && "pl-10", endIcon && "pr-10", className)}
-                    {...props}
-                />
-                {endIcon && (
-                    <View className="absolute right-3 z-10 flex h-full items-center justify-center">{endIcon}</View>
-                )}
+            <View className="w-full space-y-1.5">
+                <View className="relative flex w-full items-center">
+                    {startIcon && (
+                        <View className="absolute left-3.5 z-10 flex h-full items-center justify-center">
+                            {startIcon}
+                        </View>
+                    )}
+
+                    <Input
+                        ref={ref}
+                        className={cn(
+                            "native:h-14 native:text-base w-full",
+                            startIcon && "pl-11",
+                            (endIcon || showClear) && "pr-11",
+                            error && "border-destructive",
+                            className
+                        )}
+                        value={value}
+                        {...props}
+                    />
+
+                    <View className="absolute right-3.5 z-10 flex h-full flex-row items-center justify-center space-x-2">
+                        {showClear && (
+                            <Pressable onPress={handleClear} className="flex h-10 items-center justify-center p-2">
+                                <XIcon className="h-5 w-5 text-muted-foreground" />
+                            </Pressable>
+                        )}
+
+                        {endIcon && <View className="flex h-10 items-center justify-center p-2">{endIcon}</View>}
+                    </View>
+                </View>
+
+                {error ? (
+                    <View className="px-1">
+                        <View className="text-sm text-destructive">{error}</View>
+                    </View>
+                ) : null}
             </View>
         );
     }
