@@ -1,0 +1,49 @@
+---
+description: Whenever using alerts
+globs:
+alwaysApply: false
+---
+# Alerts
+
+## Cross-Platform Alerts
+- Always use [CrossPlatformAlert](mdc:components/common/cross-platform-alert.tsx) from `@/components/common` instead of direct imports from:
+  - `@/components/ui/alert.tsx`
+  - React Native's alert system
+
+## Why Use CrossPlatformAlert
+- Ensures consistent behavior between iOS and web platforms
+- Provides simplified props interface with title and description
+- Handles platform-specific styling automatically
+- Maintains proper accessibility across platforms
+
+## Usage Example
+```tsx
+import { CrossPlatformAlert } from "@/components/common";
+import { AlertTriangle } from "@/lib/icons";
+
+// Simple usage
+<CrossPlatformAlert
+  icon={AlertTriangle}
+  title="Warning"
+  description="This is an important alert message"
+  variant="destructive"
+/>
+
+// With custom content
+<CrossPlatformAlert icon={AlertTriangle}>
+  <AlertTitle>Custom Title</AlertTitle>
+  <AlertDescription>
+    This alert has custom content
+  </AlertDescription>
+</CrossPlatformAlert>
+```
+
+## Props Reference
+- `icon`: Required LucideIcon component
+- `title`: Optional alert title
+- `description`: Optional alert description
+- `variant`: 'default' or 'destructive'
+- `iconSize`: Icon size in pixels (default: 16)
+- `className`: Additional styles for container
+- `titleClassName`: Styles for title
+- `descriptionClassName`: Styles for description
