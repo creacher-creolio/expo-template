@@ -5,6 +5,8 @@ export { ChevronUp as ChevronUpIcon } from "./ChevronUp";
 export { DatabaseIcon } from "./DatabaseIcon";
 export { Home as HomeIcon } from "./Home";
 export { Info as InfoIcon } from "./Info";
+export { LogOut as LogOutIcon } from "./LogOut";
 export { MoonStar as MoonStarIcon } from "./MoonStar";
 export { Sun as SunIcon } from "./Sun";
+export { User as UserIcon } from "./User";
 export { X as XIcon } from "./X";

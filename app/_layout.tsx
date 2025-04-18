@@ -7,6 +7,7 @@ import { Platform } from "react-native";
 import "react-native-reanimated";
 
 import { NAV_THEME } from "@/constants/colors";
+import { AuthProvider } from "@/contexts/auth-context";
 import "@/global.css";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 import { useColorScheme } from "@/lib/useColorScheme";
@@ -47,10 +48,13 @@ export default function RootLayout() {
     return (
         <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
             <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-            <Stack>
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            </Stack>
-            <PortalHost />
+            <AuthProvider>
+                <Stack>
+                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                    <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+                </Stack>
+                <PortalHost />
+            </AuthProvider>
         </ThemeProvider>
     );
 }

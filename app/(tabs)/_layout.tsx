@@ -1,8 +1,10 @@
 import { Tabs } from "expo-router";
+import { View } from "react-native";
 
+import { ProfileButton } from "@/components/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { NAV_THEME } from "@/constants/colors";
-import { HomeIcon, DatabaseIcon } from "@/lib/icons";
+import { HomeIcon, DatabaseIcon, UserIcon } from "@/lib/icons";
 import { useColorScheme } from "@/lib/useColorScheme";
 
 export default function TabsLayout() {
@@ -13,7 +15,12 @@ export default function TabsLayout() {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: colors.primary,
-                headerRight: () => <ThemeToggle />,
+                headerRight: () => (
+                    <View className="flex-row items-center gap-3 pr-4">
+                        <ThemeToggle />
+                        <ProfileButton />
+                    </View>
+                ),
             }}>
             <Tabs.Screen
                 name="index"
@@ -26,7 +33,14 @@ export default function TabsLayout() {
                 name="supabase"
                 options={{
                     title: "Supabase",
-                    tabBarIcon: ({ color }) => <DatabaseIcon className="text-foreground" />,
+                    tabBarIcon: () => <DatabaseIcon className="text-foreground" />,
+                }}
+            />
+            <Tabs.Screen
+                name="profile"
+                options={{
+                    title: "Profile",
+                    tabBarIcon: () => <UserIcon className="text-foreground" />,
                 }}
             />
         </Tabs>

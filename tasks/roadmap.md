@@ -79,6 +79,7 @@ This to-do list outlines the steps to enhance a React Native template (using Exp
 ## Notes
 
 - Ensure all tasks use NativeWind for consistent styling and React Native Reusables for UI components--Text and Button, etc,... should come from RNR instead of react-native.
+- Always create icons per icons.mdc
 - Keep the Supabase MCP server’s schema minimal (start with `auth.users` or a `profiles` table).
 - Prioritize modularity and reusability in all configurations.
 - Use Cursor AI’s capabilities to generate code snippets, debug, and test each task.
