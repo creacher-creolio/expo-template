@@ -127,7 +127,7 @@ export default function SignUp() {
 
     return (
         <KeyboardSafeArea contentContainerClassName="px-5 justify-center py-6">
-            <View className="mb-10 space-y-2">
+            <View className="mb-10 flex flex-col gap-2">
                 <Text className="text-center text-4xl font-bold text-foreground">Create Account</Text>
                 <Text className="text-center text-lg text-muted-foreground">Sign up for a new account</Text>
             </View>

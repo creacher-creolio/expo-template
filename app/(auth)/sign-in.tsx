@@ -98,7 +98,7 @@ export default function SignIn() {
 
     return (
         <KeyboardSafeArea contentContainerClassName="px-5 justify-center py-6">
-            <View className="mb-10 space-y-2">
+            <View className="mb-10 flex flex-col gap-2">
                 <Text className="text-center text-4xl font-bold text-foreground">Welcome Back</Text>
                 <Text className="text-center text-lg text-muted-foreground">Sign in to your account</Text>
             </View>
