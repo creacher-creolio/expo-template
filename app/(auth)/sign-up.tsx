@@ -3,7 +3,7 @@ import { Eye, EyeOff, Lock, Mail } from "lucide-react-native";
 import * as React from "react";
 import { Alert, View } from "react-native";
 
-import { InputWithIcon } from "@/components/common";
+import { InputWithIcon, KeyboardSafeArea } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { signUp } from "@/services/auth";
@@ -15,6 +15,22 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
+
+    // Email input ref to focus on it when the screen loads
+    const emailInputRef = React.useRef<any>(null);
+    const passwordInputRef = React.useRef<any>(null);
+    const confirmPasswordInputRef = React.useRef<any>(null);
+
+    React.useEffect(() => {
+        // Focus on email input after a short delay to ensure component is fully mounted
+        const timer = setTimeout(() => {
+            emailInputRef.current?.focus();
+        }, 300);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
 
     const handleSignUp = async () => {
         if (!email || !password || !confirmPassword) {
@@ -43,7 +59,7 @@ export default function SignUp() {
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
     return (
-        <View className="flex-1 justify-center p-4">
+        <KeyboardSafeArea contentContainerClassName="px-4 justify-center">
             <View className="mb-8 space-y-2">
                 <Text className="text-center text-4xl font-bold text-foreground">Create Account</Text>
                 <Text className="text-center text-lg text-muted-foreground">Sign up for a new account</Text>
@@ -51,15 +67,19 @@ export default function SignUp() {
 
             <View className="mb-6 space-y-4">
                 <InputWithIcon
+                    ref={emailInputRef}
                     value={email}
                     onChangeText={setEmail}
                     placeholder="Email"
                     keyboardType="email-address"
                     autoCapitalize="none"
                     startIcon={<Mail className="h-5 w-5 text-muted-foreground" />}
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordInputRef.current?.focus()}
                 />
 
                 <InputWithIcon
+                    ref={passwordInputRef}
                     value={password}
                     onChangeText={setPassword}
                     placeholder="Password"
@@ -72,14 +92,19 @@ export default function SignUp() {
                             <Eye className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
                         )
                     }
+                    returnKeyType="next"
+                    onSubmitEditing={() => confirmPasswordInputRef.current?.focus()}
                 />
 
                 <InputWithIcon
+                    ref={confirmPasswordInputRef}
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}
                     placeholder="Confirm Password"
                     secureTextEntry={!showPassword}
                     startIcon={<Lock className="h-5 w-5 text-muted-foreground" />}
+                    returnKeyType="done"
+                    onSubmitEditing={handleSignUp}
                 />
             </View>
 
@@ -93,6 +118,6 @@ export default function SignUp() {
                     Sign In
                 </Text>
             </View>
-        </View>
+        </KeyboardSafeArea>
     );
 }
