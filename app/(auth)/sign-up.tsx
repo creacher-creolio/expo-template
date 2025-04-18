@@ -1,11 +1,11 @@
 import { useRouter } from "expo-router";
-import { Eye, EyeOff, Lock, Mail } from "lucide-react-native";
 import * as React from "react";
 import { Alert, View } from "react-native";
 
 import { InputWithIcon, KeyboardSafeArea } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
+import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "@/lib/icons";
 import { signUp } from "@/services/auth";
 
 export default function SignUp() {
@@ -73,7 +73,7 @@ export default function SignUp() {
                     placeholder="Email"
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    startIcon={<Mail className="h-5 w-5 text-muted-foreground" />}
+                    startIcon={<MailIcon className="h-5 w-5 text-muted-foreground" />}
                     returnKeyType="next"
                     onSubmitEditing={() => passwordInputRef.current?.focus()}
                 />
@@ -84,12 +84,12 @@ export default function SignUp() {
                     onChangeText={setPassword}
                     placeholder="Password"
                     secureTextEntry={!showPassword}
-                    startIcon={<Lock className="h-5 w-5 text-muted-foreground" />}
+                    startIcon={<LockIcon className="h-5 w-5 text-muted-foreground" />}
                     endIcon={
                         showPassword ? (
-                            <EyeOff className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
+                            <EyeOffIcon className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
                         ) : (
-                            <Eye className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
+                            <EyeIcon className="h-5 w-5 text-muted-foreground" onPress={togglePasswordVisibility} />
                         )
                     }
                     returnKeyType="next"
@@ -102,7 +102,7 @@ export default function SignUp() {
                     onChangeText={setConfirmPassword}
                     placeholder="Confirm Password"
                     secureTextEntry={!showPassword}
-                    startIcon={<Lock className="h-5 w-5 text-muted-foreground" />}
+                    startIcon={<LockIcon className="h-5 w-5 text-muted-foreground" />}
                     returnKeyType="done"
                     onSubmitEditing={handleSignUp}
                 />
