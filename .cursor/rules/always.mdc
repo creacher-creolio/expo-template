@@ -1,6 +1,6 @@
 ---
 description: always use these rules
-globs: 
+globs:
 alwaysApply: true
 ---
 ## Code Style
@@ -33,3 +33,4 @@ alwaysApply: true
 ## Environment
 - Use PowerShell syntax for terminal commands on Windows
 - Use pnpm instead of npm
+- Prefer text, button, input, label, and alert from components/ui instead of from react-native

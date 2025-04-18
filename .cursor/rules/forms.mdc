@@ -8,6 +8,7 @@ alwaysApply: false
 - Implement zod for schema validation
 - Create reusable form components for common patterns
 - Separate form logic from presentation components
+- Use [keyboard-handling.mdc](mdc:.cursor/rules/keyboard-handling.mdc)
 
 ## User Experience
 - Show inline validation errors with clear messaging

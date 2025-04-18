@@ -1,0 +1,85 @@
+---
+description: Whenever working with forms or input fields
+globs:
+alwaysApply: false
+---
+# Keyboard Handling
+
+## Overview
+This rule provides guidelines for handling keyboard interactions in the application to ensure a consistent user experience across iOS and Android platforms while maintaining compatibility with Expo Go.
+
+## Core Utilities
+
+### Keyboard Hook
+Use the [lib/keyboard.tsx](mdc:lib/keyboard.tsx) hook as the primary way to access keyboard state and functionality:
+
+```typescript
+const { isKeyboardVisible, keyboardHeight, dismissKeyboard } = useKeyboard();
+```
+
+This hook provides:
+- `isKeyboardVisible`: Boolean indicating if keyboard is showing
+- `keyboardHeight`: Current height of the keyboard in pixels
+- `dismissKeyboard`: Function to hide the keyboard programmatically
+- Support for different event types (didShow/willShow) via the `eventType` option
+
+### KeyboardSafeArea Component
+The [components/common/keyboard-safe-area.tsx](mdc:components/common/keyboard-safe-area.tsx) component provides a reusable wrapper that handles common keyboard interactions:
+
+```tsx
+<KeyboardSafeArea contentContainerClassName="px-4">
+  {children}
+</KeyboardSafeArea>
+```
+
+Features:
+- Automatically adjusts content when keyboard appears
+- Dismisses keyboard when tapping outside of inputs (on native platforms)
+- Works in Expo Go without requiring a development build
+- Customizable with options like bottomOffset and avoidKeyboard
+
+## Best Practices
+
+1. **Input Navigation**
+   - Use refs to handle focus management between inputs
+   - Implement returnKeyType and onSubmitEditing for seamless input navigation
+   ```tsx
+   <InputWithIcon
+     ref={emailInputRef}
+     returnKeyType="next"
+     onSubmitEditing={() => passwordInputRef.current?.focus()}
+   />
+   ```
+
+2. **Auto-Focus**
+   - For initial focus, use setTimeout to ensure component is fully mounted:
+   ```tsx
+   React.useEffect(() => {
+     const timer = setTimeout(() => {
+       inputRef.current?.focus();
+     }, 300);
+     return () => clearTimeout(timer);
+   }, []);
+   ```
+
+3. **Form Submission**
+   - Use returnKeyType="done" on last field
+   - Implement onSubmitEditing to trigger form submission
+
+4. **Keyboard Avoiding**
+   - For iOS, use "padding" behavior
+   - For Android, ensure proper keyboard vertical offset
+
+5. **Style Warnings**
+   - Always put layout properties like `justifyContent` in contentContainerStyle, not className
+   - Use keyboardShouldPersistTaps="handled" to maintain interactivity with inputs
+
+6. **Web Platform Considerations**
+   - Avoid wrapping input fields in TouchableWithoutFeedback on web
+   - Use platform checks (Platform.OS === "web") to conditionally apply touch handlers
+   - Be aware that keyboard events behave differently on web compared to native platforms
+
+## Compatibility
+- Avoid using react-native-keyboard-controller directly as it requires a development build
+- Use KeyboardAvoidingView for basic keyboard avoidance in Expo Go
+- For more advanced handling, prepare to use react-native-keyboard-controller in a development build

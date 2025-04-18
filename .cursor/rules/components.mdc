@@ -7,7 +7,9 @@ alwaysApply: false
 - Create purpose-specific components that do one thing well
 - Split components into smaller ones if they exceed 150 lines
 - Export components individually from barrel files (index.ts)
-- Never modify components in the ui/ directory directly; create wrappers
+- [react-native-reusables.mdc](mdc:.cursor/rules/react-native-reusables.mdc)
+- Whenever possible, use existing components from the components/ui directory instead of creating new ones
+- Never modify components in the components/ui directory directly; create wrapper components if necessary
 
 ## Implementation
 - Implement TypeScript interfaces for all component props
