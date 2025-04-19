@@ -118,6 +118,7 @@ export const InviteUserForm = ({ onSuccess, onError }: InviteUserFormProps) => {
                 showClearButton
                 onClear={clearEmail}
                 onBlur={handleEmailBlur}
+                textContentType="emailAddress"
             />
 
             {errors.form && (

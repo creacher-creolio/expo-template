@@ -114,6 +114,7 @@ export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmai
                 showClearButton
                 onClear={clearEmail}
                 onBlur={handleEmailBlur}
+                textContentType="emailAddress"
             />
 
             {errors.form && (

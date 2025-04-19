@@ -114,6 +114,7 @@ export default function MagicLink() {
                     showClearButton
                     startIcon={<MailIcon className="text-muted-foreground" />}
                     value={email}
+                    textContentType="emailAddress"
                 />
 
                 {errors.form && (

@@ -124,6 +124,7 @@ export default function SignIn() {
                     showClearButton
                     startIcon={<MailIcon className="text-muted-foreground" />}
                     value={email}
+                    textContentType="emailAddress"
                 />
 
                 <InputWithIcon
@@ -146,6 +147,7 @@ export default function SignIn() {
                     showClearButton
                     onClear={clearPassword}
                     onBlur={handlePasswordBlur}
+                    textContentType="password"
                 />
 
                 {errors.form && (

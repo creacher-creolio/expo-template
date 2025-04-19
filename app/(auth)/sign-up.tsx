@@ -156,6 +156,7 @@ export default function SignUp() {
                     showClearButton
                     onClear={clearEmail}
                     onBlur={handleEmailBlur}
+                    textContentType="emailAddress"
                 />
 
                 <InputWithIcon
@@ -178,6 +179,7 @@ export default function SignUp() {
                     showClearButton
                     onClear={clearPassword}
                     onBlur={handlePasswordBlur}
+                    textContentType="newPassword"
                 />
 
                 <InputWithIcon
@@ -200,6 +202,7 @@ export default function SignUp() {
                     showClearButton
                     onClear={clearConfirmPassword}
                     onBlur={handleConfirmPasswordBlur}
+                    textContentType="newPassword"
                 />
 
                 {errors.form && (

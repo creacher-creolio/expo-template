@@ -11,10 +11,11 @@ interface InputWithIconProps extends TextInputProps {
     onClear?: () => void;
     showClearButton?: boolean;
     error?: string;
+    textContentType?: 'none' | 'URL' | 'addressCity' | 'addressCityAndState' | 'addressState' | 'countryName' | 'creditCardNumber' | 'emailAddress' | 'familyName' | 'fullStreetAddress' | 'givenName' | 'jobTitle' | 'location' | 'middleName' | 'name' | 'namePrefix' | 'nameSuffix' | 'nickname' | 'organizationName' | 'postalCode' | 'streetAddressLine1' | 'streetAddressLine2' | 'sublocality' | 'telephoneNumber' | 'username' | 'password' | 'newPassword' | 'oneTimeCode';
 }
 
 const InputWithIcon = React.forwardRef<React.ElementRef<typeof Input>, InputWithIconProps>(
-    ({ className, startIcon, endIcon, onClear, showClearButton, value, error, ...props }, ref) => {
+    ({ className, startIcon, endIcon, onClear, showClearButton, value, error, textContentType, ...props }, ref) => {
         const showClear = showClearButton && value && value.length > 0;
 
         const handleClear = () => {
@@ -42,6 +43,7 @@ const InputWithIcon = React.forwardRef<React.ElementRef<typeof Input>, InputWith
                             className
                         )}
                         value={value}
+                        textContentType={textContentType}
                         {...props}
                     />
 

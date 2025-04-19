@@ -67,6 +67,14 @@ export const updateEmail = async (newEmail: string) => {
     return data;
 };
 
+// Delete user account
+export const deleteAccount = async () => {
+    const { error } = await supabase.auth.admin.deleteUser((await getCurrentUser())?.id || "");
+
+    if (error) throw error;
+    return { success: true };
+};
+
 // Invite user by email (initiates signup)
 export const inviteUser = async (email: string) => {
     const { data, error } = await supabase.auth.admin.inviteUserByEmail(email);
