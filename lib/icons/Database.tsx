@@ -2,4 +2,4 @@ import { Database } from "lucide-react-native";
 
 import { iconWithClassName } from "./iconWithClassName";
 iconWithClassName(Database);
-export const DatabaseIcon = Database;
+export { Database };
