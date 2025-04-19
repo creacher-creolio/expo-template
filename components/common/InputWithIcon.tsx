@@ -47,7 +47,14 @@ const InputWithIcon = React.forwardRef<React.ElementRef<typeof Input>, InputWith
 
                     <View className="absolute right-3.5 z-10 flex h-full flex-row items-center justify-center gap-2">
                         {showClear && (
-                            <Pressable onPress={handleClear} className="flex h-10 items-center justify-center p-2">
+                            <Pressable
+                                onPress={handleClear}
+                                className="flex h-10 items-center justify-center p-2"
+                                accessible={false}
+                                accessibilityElementsHidden={true}
+                                importantForAccessibility="no"
+                                tabIndex={-1}
+                            >
                                 <XIcon className="h-5 w-5 text-muted-foreground" />
                             </Pressable>
                         )}
