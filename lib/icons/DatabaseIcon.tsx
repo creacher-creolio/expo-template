@@ -1,5 +1,5 @@
-import { DatabaseIcon } from "lucide-react-native";
+import { Database } from "lucide-react-native";
 
 import { iconWithClassName } from "./iconWithClassName";
-iconWithClassName(DatabaseIcon);
-export { DatabaseIcon };
+iconWithClassName(Database);
+export const DatabaseIcon = Database;
