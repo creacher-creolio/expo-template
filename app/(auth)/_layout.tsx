@@ -9,8 +9,21 @@ export default function AuthLayout() {
                 screenOptions={{
                     headerShown: true,
                     contentStyle: { backgroundColor: "transparent" },
-                }}
-            />
+                    headerTitleAlign: "center",
+                }}>
+                <Stack.Screen
+                    name="sign-in"
+                    options={{
+                        title: "Sign In",
+                    }}
+                />
+                <Stack.Screen
+                    name="sign-up"
+                    options={{
+                        title: "Sign Up",
+                    }}
+                />
+            </Stack>
         </View>
     );
 }

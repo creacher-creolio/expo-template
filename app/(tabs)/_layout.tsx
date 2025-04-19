@@ -15,6 +15,7 @@ export default function TabsLayout() {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: colors.primary,
+                headerTitleAlign: "center",
                 headerRight: () => (
                     <View className="flex-row items-center gap-3 pr-4">
                         <ThemeToggle />
