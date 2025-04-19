@@ -84,7 +84,7 @@ function ProfileContent() {
             <View className="p-5">
                 {/* Profile Header with Avatar */}
                 <View className="mb-6 flex-row items-center">
-                    <Avatar className="h-16 w-16 mr-4" alt={user?.email || "User avatar"}>
+                    <Avatar className="mr-4 h-16 w-16" alt={user?.email || "User avatar"}>
                         <AvatarImage source={{ uri: user?.user_metadata?.avatar_url }} />
                         <AvatarFallback>
                             <Text className="text-xl font-semibold">{getUserInitials()}</Text>
@@ -103,15 +103,15 @@ function ProfileContent() {
                         <CardTitle>User Information</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <View className="mb-3 flex-row justify-between items-center">
+                        <View className="mb-3 flex-row items-center justify-between">
                             <Text className="text-muted-foreground">Email</Text>
                             <Text className="font-medium">{user?.email}</Text>
                         </View>
-                        <View className="mb-3 flex-row justify-between items-center">
+                        <View className="mb-3 flex-row items-center justify-between">
                             <Text className="text-muted-foreground">User ID</Text>
-                            <Text className="font-medium text-xs">{user?.id}</Text>
+                            <Text className="text-xs font-medium">{user?.id}</Text>
                         </View>
-                        <View className="flex-row justify-between items-center">
+                        <View className="flex-row items-center justify-between">
                             <Text className="text-muted-foreground">Last Sign In</Text>
                             <Text className="font-medium">
                                 {user?.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : "N/A"}
@@ -126,7 +126,11 @@ function ProfileContent() {
                         <UserIcon className="mr-2 h-5 w-5 text-primary" />
                         <CardTitle>Account Settings</CardTitle>
                         {activeSection && (
-                            <Button variant="ghost" size="icon" onPress={() => setActiveSection(null)} className="ml-auto">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onPress={() => setActiveSection(null)}
+                                className="ml-auto">
                                 <XIcon className="h-5 w-5" />
                             </Button>
                         )}
@@ -137,7 +141,9 @@ function ProfileContent() {
                                 {activeSection === "email" && (
                                     <UpdateEmailForm
                                         currentEmail={user?.email || ""}
-                                        onSuccess={() => handleSuccess("Email update has been initiated. Check your inbox.")}
+                                        onSuccess={() =>
+                                            handleSuccess("Email update has been initiated. Check your inbox.")
+                                        }
                                         onError={handleError}
                                     />
                                 )}
@@ -157,7 +163,7 @@ function ProfileContent() {
                                 )}
                             </Animated.View>
                         ) : (
-                            <View className="space-y-3">
+                            <View className="flex flex-col gap-3">
                                 <View className="flex-row items-center justify-between">
                                     <View className="flex-row items-center">
                                         <MailIcon className="mr-2 h-5 w-5 text-primary" />
@@ -195,10 +201,9 @@ function ProfileContent() {
                 {/* Sign Out Button */}
                 <Button
                     variant="secondary"
-                    className="w-full flex-row justify-center items-center"
+                    className="w-full flex-row items-center justify-center"
                     onPress={handleSignOut}
-                    disabled={isLoading}
-                >
+                    disabled={isLoading}>
                     {isLoading ? (
                         <ActivityIndicator color="white" size="small" />
                     ) : (

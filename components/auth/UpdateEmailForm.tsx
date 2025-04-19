@@ -1,10 +1,9 @@
 import * as React from "react";
 import { View } from "react-native";
 
-import { InputWithIcon } from "@/components/common";
-import { Button } from "@/components/ui/button";
+import { EmailInput, FormError, SubmitButton } from "@/components/auth";
 import { Text } from "@/components/ui/text";
-import { AlertTriangleIcon, MailIcon } from "@/lib/icons";
+import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateEmail } from "@/lib/validation";
 import { updateEmail } from "@/services/auth";
 
@@ -15,70 +14,35 @@ interface UpdateEmailFormProps {
 }
 
 export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmailFormProps) => {
-    const [email, setEmail] = React.useState("");
-    const [isLoading, setIsLoading] = React.useState(false);
     const [isSuccess, setIsSuccess] = React.useState(false);
-    const [errors, setErrors] = React.useState<Record<string, string | null>>({});
-    const [wasSubmitted, setWasSubmitted] = React.useState(false);
 
-    const emailInputRef = React.useRef<any>(null);
+    // Custom validation function that checks against current email
+    const validateNewEmail = (value: string) => {
+        if (value === currentEmail) {
+            return "New email must be different from current email";
+        }
+        return validateEmail(value);
+    };
+
+    const { fieldState, isLoading, formError, handleSubmit, focusFirstField } = useAuthForm({
+        email: {
+            validationFn: validateNewEmail,
+        },
+    });
 
     React.useEffect(() => {
-        // Focus on email input after a short delay
-        const timer = setTimeout(() => {
-            emailInputRef.current?.focus();
-        }, 300);
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
-
-    const validateEmailField = (value: string) => {
-        if (value === currentEmail) {
-            const error = "New email must be different from current email";
-            setErrors(prev => ({ ...prev, email: error }));
-            return false;
-        }
-
-        const error = validateEmail(value);
-        setErrors(prev => ({ ...prev, email: error }));
-        return !error;
-    };
-
-    const handleEmailBlur = () => {
-        if (wasSubmitted) {
-            validateEmailField(email);
-        }
-    };
+        return focusFirstField();
+    }, [focusFirstField]);
 
     const handleUpdateEmail = async () => {
-        setWasSubmitted(true);
-        const isEmailValid = validateEmailField(email);
-
-        if (!isEmailValid) {
-            return;
-        }
-
-        setIsLoading(true);
         try {
-            await updateEmail(email);
-            setIsSuccess(true);
-            setErrors({});
-            if (onSuccess) onSuccess();
+            await handleSubmit(async () => {
+                await updateEmail(fieldState.email.value);
+                setIsSuccess(true);
+                if (onSuccess) onSuccess();
+            });
         } catch (error: any) {
-            const errorMessage = error.message || "Failed to update email";
-            setErrors(prev => ({ ...prev, form: errorMessage }));
             if (onError) onError(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const clearEmail = () => {
-        setEmail("");
-        if (wasSubmitted) {
-            validateEmailField("");
         }
     };
 
@@ -87,8 +51,8 @@ export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmai
             <View className="flex flex-col items-center gap-4">
                 <Text className="text-center text-lg font-semibold text-foreground">Email Update Sent</Text>
                 <Text className="text-center text-base text-muted-foreground">
-                    We've sent a confirmation link to {email}. Please check your inbox to confirm your new email
-                    address.
+                    We've sent a confirmation link to {fieldState.email.value}. Please check your inbox to confirm your
+                    new email address.
                 </Text>
             </View>
         );
@@ -100,33 +64,20 @@ export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmai
                 Current email: <Text className="font-medium text-foreground">{currentEmail}</Text>
             </Text>
 
-            <InputWithIcon
-                ref={emailInputRef}
-                value={email}
-                onChangeText={setEmail}
-                placeholder="New Email Address"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                startIcon={<MailIcon className="text-muted-foreground" />}
-                returnKeyType="done"
+            <EmailInput
+                ref={fieldState.email.ref}
+                value={fieldState.email.value}
+                onChangeText={fieldState.email.setValue}
+                error={fieldState.email.error || ""}
+                onClear={fieldState.email.clearValue}
+                onBlur={fieldState.email.handleBlur}
                 onSubmitEditing={handleUpdateEmail}
-                error={errors.email || ""}
-                showClearButton
-                onClear={clearEmail}
-                onBlur={handleEmailBlur}
-                textContentType="emailAddress"
+                returnKeyType="done"
             />
 
-            {errors.form && (
-                <View className="flex-row items-center px-1">
-                    <AlertTriangleIcon size={16} className="mr-2 text-destructive" />
-                    <Text className="text-sm text-destructive">{errors.form}</Text>
-                </View>
-            )}
+            <FormError error={formError} />
 
-            <Button onPress={handleUpdateEmail} disabled={isLoading} className="mt-2 h-14">
-                <Text>{isLoading ? "Updating..." : "Update Email"}</Text>
-            </Button>
+            <SubmitButton onPress={handleUpdateEmail} isLoading={isLoading} text="Update Email" className="h-14" />
         </View>
     );
 };

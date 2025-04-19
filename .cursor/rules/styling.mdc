@@ -23,3 +23,6 @@ alwaysApply: false
 ## Images
 - Use appropriate resizeMode and dimensions for images
 - Implement proper aspect ratios with NativeWind classes
+
+## Spacing
+- Prefer flex with gap over space-x/space-y

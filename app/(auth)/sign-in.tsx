@@ -2,183 +2,85 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 import { View } from "react-native";
 
-import { InputWithIcon, KeyboardSafeArea } from "@/components/common";
-import { Button } from "@/components/ui/button";
+import { AuthLayout, AuthFooter, EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth";
 import { Text } from "@/components/ui/text";
-import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "@/lib/icons";
+import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateEmail, validatePassword } from "@/lib/validation";
 import { signIn } from "@/services/auth";
 
 export default function SignIn() {
     const router = useRouter();
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [showPassword, setShowPassword] = React.useState(false);
-    const [errors, setErrors] = React.useState<Record<string, string | null>>({});
-    const [wasSubmitted, setWasSubmitted] = React.useState(false);
 
-    const emailInputRef = React.useRef<any>(null);
-    const passwordInputRef = React.useRef<any>(null);
+    const { fieldState, isLoading, formError, handleSubmit, focusFirstField } = useAuthForm({
+        email: {
+            validationFn: validateEmail,
+        },
+        password: {
+            validationFn: validatePassword,
+        },
+    });
 
     React.useEffect(() => {
-        // Focus on email input after a short delay to ensure component is fully mounted
-        const timer = setTimeout(() => {
-            emailInputRef.current?.focus();
-        }, 300);
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
-
-    const validateEmailField = (value: string) => {
-        const error = validateEmail(value);
-        setErrors(prev => ({ ...prev, email: error }));
-        return !error;
-    };
-
-    const validatePasswordField = (value: string) => {
-        const error = validatePassword(value);
-        setErrors(prev => ({ ...prev, password: error }));
-        return !error;
-    };
-
-    const handleEmailBlur = () => {
-        if (wasSubmitted) {
-            validateEmailField(email);
-        }
-    };
-
-    const handlePasswordBlur = () => {
-        if (wasSubmitted) {
-            validatePasswordField(password);
-        }
-    };
+        return focusFirstField();
+    }, [focusFirstField]);
 
     const handleSignIn = async () => {
-        setWasSubmitted(true);
-
-        const isEmailValid = validateEmailField(email);
-        const isPasswordValid = validatePasswordField(password);
-
-        if (!isEmailValid || !isPasswordValid) {
-            return;
-        }
-
-        setIsLoading(true);
         try {
-            await signIn(email, password);
-            router.replace("/(tabs)");
-        } catch (error: any) {
-            setErrors(prev => ({
-                ...prev,
-                form: error.message || "Failed to sign in",
-            }));
-        } finally {
-            setIsLoading(false);
+            await handleSubmit(async () => {
+                await signIn(fieldState.email.value, fieldState.password.value);
+                router.replace("/(tabs)");
+            });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (_error) {
+            // Error already handled by useAuthForm
         }
-    };
-
-    const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
-    const clearEmail = () => {
-        setEmail("");
-        if (wasSubmitted) {
-            validateEmailField("");
-        }
-    };
-
-    const clearPassword = () => {
-        setPassword("");
-        if (wasSubmitted) {
-            validatePasswordField("");
-        }
-    };
-
-    const navigateTo = (path: string) => {
-        setTimeout(() => {
-            router.replace(path as any);
-        }, 0);
     };
 
     return (
-        <KeyboardSafeArea contentContainerClassName="px-5 justify-center py-6">
-            <View className="mb-10 flex flex-col gap-2">
-                <Text className="text-center text-4xl font-bold text-foreground">Welcome Back</Text>
-                <Text className="text-center text-lg text-muted-foreground">Sign in to your account</Text>
-            </View>
-
-            <View className="mb-8 flex flex-col gap-5">
-                <InputWithIcon
-                    autoCapitalize="none"
-                    error={errors.email || ""}
-                    keyboardType="email-address"
-                    onBlur={handleEmailBlur}
-                    onChangeText={setEmail}
-                    onClear={clearEmail}
-                    onSubmitEditing={() => passwordInputRef.current?.focus()}
-                    placeholder="Email"
-                    ref={emailInputRef}
-                    returnKeyType="next"
-                    showClearButton
-                    startIcon={<MailIcon className="text-muted-foreground" />}
-                    value={email}
-                    textContentType="emailAddress"
+        <AuthLayout
+            title="Welcome Back"
+            subtitle="Sign in to your account"
+            footer={
+                <AuthFooter
+                    promptText="Don't have an account?"
+                    linkText="Sign Up"
+                    linkPath="/(auth)/sign-up"
+                    secondaryLinkText="Sign in with magic link"
+                    secondaryLinkPath="/(auth)/magic-link"
+                />
+            }>
+            <View className="flex flex-col gap-5">
+                <EmailInput
+                    ref={fieldState.email.ref}
+                    value={fieldState.email.value}
+                    onChangeText={fieldState.email.setValue}
+                    error={fieldState.email.error || ""}
+                    onClear={fieldState.email.clearValue}
+                    onBlur={fieldState.email.handleBlur}
+                    onSubmitEditing={() => fieldState.password.ref.current?.focus()}
                 />
 
-                <InputWithIcon
-                    ref={passwordInputRef}
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="Password"
-                    secureTextEntry={!showPassword}
-                    startIcon={<LockIcon className="text-muted-foreground" />}
-                    endIcon={
-                        showPassword ? (
-                            <EyeOffIcon className="text-muted-foreground" onPress={togglePasswordVisibility} />
-                        ) : (
-                            <EyeIcon className="text-muted-foreground" onPress={togglePasswordVisibility} />
-                        )
-                    }
-                    returnKeyType="done"
+                <PasswordInput
+                    ref={fieldState.password.ref}
+                    value={fieldState.password.value}
+                    onChangeText={fieldState.password.setValue}
+                    error={fieldState.password.error || ""}
+                    onClear={fieldState.password.clearValue}
+                    onBlur={fieldState.password.handleBlur}
                     onSubmitEditing={handleSignIn}
-                    error={errors.password || ""}
-                    showClearButton
-                    onClear={clearPassword}
-                    onBlur={handlePasswordBlur}
-                    textContentType="password"
+                    returnKeyType="done"
                 />
 
-                {errors.form && (
-                    <View className="px-1">
-                        <Text className="text-sm text-destructive">{errors.form}</Text>
-                    </View>
-                )}
+                <FormError error={formError} />
 
                 <Text
-                    className="text-right text-sm font-medium text-primary"
-                    onPress={() => navigateTo("/(auth)/password-reset")}>
+                    className="-mt-2.5 text-right text-sm font-medium text-primary"
+                    onPress={() => router.replace("/(auth)/password-reset")}>
                     Forgot password?
                 </Text>
             </View>
 
-            <Button onPress={handleSignIn} disabled={isLoading} className="mb-4 h-14">
-                <Text>{isLoading ? "Signing in..." : "Sign In"}</Text>
-            </Button>
-
-            <View className="mb-6">
-                <Text className="text-center font-medium text-primary" onPress={() => navigateTo("/(auth)/magic-link")}>
-                    Sign in with magic link
-                </Text>
-            </View>
-
-            <View className="flex-row justify-center">
-                <Text className="text-muted-foreground">Don't have an account? </Text>
-                <Text className="font-semibold text-primary" onPress={() => navigateTo("/(auth)/sign-up")}>
-                    Sign Up
-                </Text>
-            </View>
-        </KeyboardSafeArea>
+            <SubmitButton onPress={handleSignIn} isLoading={isLoading} text="Sign In" loadingText="Signing in..." />
+        </AuthLayout>
     );
 }

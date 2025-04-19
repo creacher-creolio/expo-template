@@ -57,12 +57,12 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
     };
 
     return (
-        <View className="space-y-4">
+        <View className="flex flex-col gap-4">
             <Text className="font-medium text-destructive">
                 Deleting your account is permanent and cannot be undone. All your data will be removed.
             </Text>
 
-            <View className="space-y-2">
+            <View className="flex flex-col gap-2">
                 <Label htmlFor="password">Current Password</Label>
                 <Controller
                     control={control}
@@ -84,7 +84,7 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
                 {errors.password && <Text className="text-sm text-destructive">{errors.password.message}</Text>}
             </View>
 
-            <View className="space-y-2">
+            <View className="flex flex-col gap-2">
                 <Label htmlFor="confirmation">Type 'delete' to confirm</Label>
                 <Controller
                     control={control}
@@ -107,8 +107,8 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
                 {errors.confirmation && <Text className="text-sm text-destructive">{errors.confirmation.message}</Text>}
             </View>
 
-            <View className="mt-4 flex-row space-x-2">
-                <Button variant="ghost" className="flex-1" onPress={onCancel} disabled={isSubmitting}>
+            <View className="mt-4 flex flex-row gap-2">
+                <Button variant="outline" className="flex-1" onPress={onCancel} disabled={isSubmitting}>
                     <Text>Cancel</Text>
                 </Button>
                 <Button
