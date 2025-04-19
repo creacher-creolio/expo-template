@@ -24,6 +24,57 @@ export const signIn = async (email: string, password: string) => {
     return data;
 };
 
+// Sign in with magic link
+export const signInWithMagicLink = async (email: string) => {
+    const { data, error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+            emailRedirectTo: process.env.EXPO_PUBLIC_AUTH_REDIRECT_URL,
+        },
+    });
+
+    if (error) throw error;
+    return data;
+};
+
+// Reset password
+export const resetPassword = async (email: string) => {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: process.env.EXPO_PUBLIC_AUTH_REDIRECT_URL,
+    });
+
+    if (error) throw error;
+    return data;
+};
+
+// Update user password
+export const updatePassword = async (newPassword: string) => {
+    const { data, error } = await supabase.auth.updateUser({
+        password: newPassword,
+    });
+
+    if (error) throw error;
+    return data;
+};
+
+// Update user email
+export const updateEmail = async (newEmail: string) => {
+    const { data, error } = await supabase.auth.updateUser({
+        email: newEmail,
+    });
+
+    if (error) throw error;
+    return data;
+};
+
+// Invite user by email (initiates signup)
+export const inviteUser = async (email: string) => {
+    const { data, error } = await supabase.auth.admin.inviteUserByEmail(email);
+
+    if (error) throw error;
+    return data;
+};
+
 // Sign out the current user
 export const signOut = async () => {
     const { error } = await supabase.auth.signOut();

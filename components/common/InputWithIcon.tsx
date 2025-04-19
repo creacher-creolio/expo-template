@@ -53,8 +53,7 @@ const InputWithIcon = React.forwardRef<React.ElementRef<typeof Input>, InputWith
                                 accessible={false}
                                 accessibilityElementsHidden={true}
                                 importantForAccessibility="no"
-                                tabIndex={-1}
-                            >
+                                tabIndex={-1}>
                                 <XIcon className="h-5 w-5 text-muted-foreground" />
                             </Pressable>
                         )}

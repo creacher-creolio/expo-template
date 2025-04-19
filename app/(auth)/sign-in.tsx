@@ -96,6 +96,12 @@ export default function SignIn() {
         }
     };
 
+    const navigateTo = (path: string) => {
+        setTimeout(() => {
+            router.replace(path as any);
+        }, 0);
+    };
+
     return (
         <KeyboardSafeArea contentContainerClassName="px-5 justify-center py-6">
             <View className="mb-10 flex flex-col gap-2">
@@ -147,23 +153,27 @@ export default function SignIn() {
                         <Text className="text-sm text-destructive">{errors.form}</Text>
                     </View>
                 )}
+
+                <Text
+                    className="text-right text-sm font-medium text-primary"
+                    onPress={() => navigateTo("/(auth)/password-reset")}>
+                    Forgot password?
+                </Text>
             </View>
 
-            <Button onPress={handleSignIn} disabled={isLoading} className="mb-6 h-14">
+            <Button onPress={handleSignIn} disabled={isLoading} className="mb-4 h-14">
                 <Text>{isLoading ? "Signing in..." : "Sign In"}</Text>
             </Button>
 
+            <View className="mb-6">
+                <Text className="text-center font-medium text-primary" onPress={() => navigateTo("/(auth)/magic-link")}>
+                    Sign in with magic link
+                </Text>
+            </View>
+
             <View className="flex-row justify-center">
                 <Text className="text-muted-foreground">Don't have an account? </Text>
-                <Text
-                    className="font-semibold text-primary"
-                    onPress={() => {
-                        // Use setTimeout to allow component to unmount cleanly before navigation
-                        setTimeout(() => {
-                            router.replace("/(auth)/sign-up");
-                        }, 0);
-                    }}
-                >
+                <Text className="font-semibold text-primary" onPress={() => navigateTo("/(auth)/sign-up")}>
                     Sign Up
                 </Text>
             </View>

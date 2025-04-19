@@ -27,6 +27,24 @@ export default function AuthLayout() {
                         title: "Sign Up",
                     }}
                 />
+                <Stack.Screen
+                    name="magic-link"
+                    options={{
+                        title: "Magic Link",
+                    }}
+                />
+                <Stack.Screen
+                    name="set-password"
+                    options={{
+                        title: "Set Password",
+                    }}
+                />
+                <Stack.Screen
+                    name="password-reset"
+                    options={{
+                        title: "Reset Password",
+                    }}
+                />
             </Stack>
         </View>
     );

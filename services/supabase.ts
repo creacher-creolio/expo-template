@@ -10,13 +10,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // Check if we're running in a browser or native environment
-const isNonWebEnvironment = Platform.OS !== "web" || (typeof document !== "undefined" && typeof window !== "undefined");
+const isWeb = Platform.OS === "web";
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
-        storage: isNonWebEnvironment ? AsyncStorage : undefined,
+        storage: isWeb ? undefined : AsyncStorage,
         autoRefreshToken: true,
-        persistSession: isNonWebEnvironment,
-        detectSessionInUrl: false,
+        persistSession: true,
+        detectSessionInUrl: isWeb,
     },
 });

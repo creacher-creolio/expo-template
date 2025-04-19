@@ -222,8 +222,7 @@ export default function SignUp() {
                         setTimeout(() => {
                             router.replace("/(auth)/sign-in");
                         }, 0);
-                    }}
-                >
+                    }}>
                     Sign In
                 </Text>
             </View>

@@ -29,9 +29,9 @@ export const validatePassword = (password: string): string | null => {
     }
 
     // Check for at least one uppercase letter
-    // if (!/[A-Z]/.test(password)) {
-    //     return "Password must contain at least one uppercase letter";
-    // }
+    if (!/[A-Z]/.test(password)) {
+        return "Password must contain at least one uppercase letter";
+    }
 
     return null;
 };
