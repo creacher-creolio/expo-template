@@ -155,7 +155,15 @@ export default function SignIn() {
 
             <View className="flex-row justify-center">
                 <Text className="text-muted-foreground">Don't have an account? </Text>
-                <Text className="font-semibold text-primary" onPress={() => router.push("/(auth)/sign-up")}>
+                <Text
+                    className="font-semibold text-primary"
+                    onPress={() => {
+                        // Use setTimeout to allow component to unmount cleanly before navigation
+                        setTimeout(() => {
+                            router.replace("/(auth)/sign-up");
+                        }, 0);
+                    }}
+                >
                     Sign Up
                 </Text>
             </View>

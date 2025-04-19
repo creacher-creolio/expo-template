@@ -90,7 +90,10 @@ export default function SignUp() {
             setSuccessMessage("Account created successfully. Please check your email to confirm your account.");
             // Don't navigate immediately so user can see the success message
             setTimeout(() => {
-                router.push("/(auth)/sign-in");
+                // Use setTimeout again for smoother transition
+                setTimeout(() => {
+                    router.replace("/(auth)/sign-in");
+                }, 0);
             }, 2000);
         } catch (error: any) {
             setErrors(prev => ({
@@ -212,7 +215,15 @@ export default function SignUp() {
 
             <View className="flex-row justify-center">
                 <Text className="text-muted-foreground">Already have an account? </Text>
-                <Text className="font-semibold text-primary" onPress={() => router.push("/(auth)/sign-in")}>
+                <Text
+                    className="font-semibold text-primary"
+                    onPress={() => {
+                        // Use setTimeout to allow component to unmount cleanly before navigation
+                        setTimeout(() => {
+                            router.replace("/(auth)/sign-in");
+                        }, 0);
+                    }}
+                >
                     Sign In
                 </Text>
             </View>

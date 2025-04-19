@@ -14,6 +14,7 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, TextInputProp
                     className
                 )}
                 placeholderClassName={cn("text-muted-foreground", placeholderClassName)}
+                textAlignVertical="center"
                 {...props}
             />
         );

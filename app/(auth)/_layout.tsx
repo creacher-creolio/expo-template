@@ -10,6 +10,10 @@ export default function AuthLayout() {
                     headerShown: true,
                     contentStyle: { backgroundColor: "transparent" },
                     headerTitleAlign: "center",
+                    animation: "fade",
+                    animationDuration: 100,
+                    presentation: "card",
+                    gestureEnabled: true,
                 }}>
                 <Stack.Screen
                     name="sign-in"
