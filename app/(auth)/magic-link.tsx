@@ -28,7 +28,7 @@ export default function MagicLink() {
                 await signInWithMagicLink(fieldState.email.value);
                 setEmailSent(true);
             });
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (_error) {
             // Error already handled by useAuthForm
         }

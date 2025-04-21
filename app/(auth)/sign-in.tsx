@@ -6,7 +6,7 @@ import { AuthLayout, AuthFooter, EmailInput, PasswordInput, FormError, SubmitBut
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateEmail, validatePassword } from "@/lib/validation";
-import { signIn } from "@/services/auth";
+import { signInWithPassword } from "@/services/auth";
 
 export default function SignIn() {
     const router = useRouter();
@@ -27,10 +27,10 @@ export default function SignIn() {
     const handleSignIn = async () => {
         try {
             await handleSubmit(async () => {
-                await signIn(fieldState.email.value, fieldState.password.value);
+                await signInWithPassword(fieldState.email.value, fieldState.password.value);
                 router.replace("/(tabs)");
             });
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (_error) {
             // Error already handled by useAuthForm
         }

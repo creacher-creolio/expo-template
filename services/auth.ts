@@ -14,7 +14,7 @@ export const signUp = async (email: string, password: string) => {
 };
 
 // Sign in with email and password
-export const signIn = async (email: string, password: string) => {
+export const signInWithPassword = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -68,7 +68,7 @@ export const updateEmail = async (newEmail: string) => {
 };
 
 // Delete user account
-export const deleteAccount = async () => {
+export const deleteUser = async () => {
     const { error } = await supabase.auth.admin.deleteUser((await getCurrentUser())?.id || "");
 
     if (error) throw error;
