@@ -42,6 +42,8 @@ export const PasswordInput = React.forwardRef<any, PasswordInputProps>(
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 secureTextEntry={!showPassword}
+                // autoCapitalize="none"
+                // autoComplete="current-password"
                 startIcon={<LockIcon className="text-muted-foreground" />}
                 endIcon={
                     showPassword ? (

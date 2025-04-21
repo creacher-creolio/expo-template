@@ -2,6 +2,7 @@ import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ActivityIndicator, View } from "react-native";
 
+import { PasswordInput } from "@/components/auth/PasswordInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -83,19 +84,18 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
                     name="password"
                     rules={{ required: "Password is required" }}
                     render={({ field: { onChange, onBlur, value } }) => (
-                        <Input
-                            id="password"
-                            placeholder="Enter your password"
-                            secureTextEntry
+                        <PasswordInput
                             value={value}
                             onChangeText={onChange}
                             onBlur={onBlur}
-                            autoCapitalize="none"
-                            autoComplete="password"
+                            placeholder="Enter your password"
+                            error={errors.password?.message}
+                            textContentType="password"
+                            returnKeyType="next"
                         />
                     )}
                 />
-                {errors.password && <Text className="text-sm text-destructive">{errors.password.message}</Text>}
+                {!errors.password && <Text className="h-5" />}
             </View>
 
             <View className="flex flex-col gap-2">
@@ -115,6 +115,8 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
                             onChangeText={onChange}
                             onBlur={onBlur}
                             autoCapitalize="none"
+                            returnKeyType="done"
+                            onSubmitEditing={handleSubmit(onSubmit)}
                         />
                     )}
                 />
