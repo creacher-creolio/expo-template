@@ -27,6 +27,7 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
         control,
         handleSubmit,
         formState: { errors },
+        setError,
     } = useForm<FormData>({
         defaultValues: {
             password: "",
@@ -35,12 +36,18 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
     });
 
     const onSubmit = async (data: FormData) => {
-        if (data.password !== data.confirmation) {
-            return onError(new Error("Confirmation does not match"));
-        }
-
         try {
             setIsSubmitting(true);
+
+            // Check if confirmation is "delete"
+            if (data.confirmation !== "delete") {
+                setError("confirmation", {
+                    type: "validate",
+                    message: "Please type 'delete' to confirm",
+                });
+                setIsSubmitting(false);
+                return;
+            }
 
             // First verify the password is correct
             await signInWithPassword(email, data.password);
@@ -50,7 +57,14 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
 
             onSuccess();
         } catch (error: any) {
-            onError(new Error(error.message || "Failed to delete account"));
+            if (error.message?.includes("password")) {
+                setError("password", {
+                    type: "validate",
+                    message: "Incorrect password",
+                });
+            } else {
+                onError(new Error(error.message || "Failed to delete account"));
+            }
         } finally {
             setIsSubmitting(false);
         }
