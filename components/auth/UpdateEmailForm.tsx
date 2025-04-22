@@ -2,6 +2,7 @@ import * as React from "react";
 import { View } from "react-native";
 
 import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
+import { Form } from "@/components/common";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateEmail } from "@/lib/validation";
@@ -59,7 +60,7 @@ export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmai
     }
 
     return (
-        <View className="flex flex-col gap-5">
+        <Form onSubmit={handleUpdateEmail}>
             <Text className="text-base text-muted-foreground">
                 Current email: <Text className="font-medium text-foreground">{currentEmail}</Text>
             </Text>
@@ -77,7 +78,12 @@ export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmai
 
             <FormError error={formError} />
 
-            <SubmitButton onPress={handleUpdateEmail} isLoading={isLoading} text="Update Email" className="h-14" />
-        </View>
+            <SubmitButton
+                onPress={handleUpdateEmail}
+                isLoading={isLoading}
+                text="Update Email"
+                loadingText="Updating..."
+            />
+        </Form>
     );
 };

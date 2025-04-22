@@ -1,9 +1,9 @@
 import { useRouter } from "expo-router";
 import * as React from "react";
-import { View } from "react-native";
 
 import { AuthLayout, AuthFooter } from "@/components/auth";
 import { EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
+import { Form } from "@/components/common";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateEmail, validatePassword } from "@/lib/validation";
@@ -50,7 +50,7 @@ export default function SignIn() {
                     secondaryLinkPath="/(auth)/magic-link"
                 />
             }>
-            <View className="flex flex-col gap-5">
+            <Form onSubmit={handleSignIn}>
                 <EmailInput
                     ref={fieldState.email.ref}
                     value={fieldState.email.value}
@@ -79,9 +79,9 @@ export default function SignIn() {
                     onPress={() => router.replace("/(auth)/password-reset")}>
                     Forgot password?
                 </Text>
-            </View>
 
-            <SubmitButton onPress={handleSignIn} isLoading={isLoading} text="Sign In" loadingText="Signing in..." />
+                <SubmitButton onPress={handleSignIn} isLoading={isLoading} text="Sign In" loadingText="Signing in..." />
+            </Form>
         </AuthLayout>
     );
 }

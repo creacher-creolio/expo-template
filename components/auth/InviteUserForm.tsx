@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 
-import { InputWithIcon } from "@/components/common";
+import { Form, InputWithIcon } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { AlertTriangleIcon, CheckCircleIcon, MailIcon } from "@/lib/icons";
@@ -103,7 +103,7 @@ export const InviteUserForm = ({ onSuccess, onError }: InviteUserFormProps) => {
     }
 
     return (
-        <View className="flex flex-col gap-5">
+        <Form onSubmit={handleSendInvite}>
             <InputWithIcon
                 ref={emailInputRef}
                 value={email}
@@ -131,6 +131,6 @@ export const InviteUserForm = ({ onSuccess, onError }: InviteUserFormProps) => {
             <Button onPress={handleSendInvite} disabled={isLoading} className="mt-2 h-12">
                 <Text>{isLoading ? "Sending..." : "Send Invitation"}</Text>
             </Button>
-        </View>
+        </Form>
     );
 };

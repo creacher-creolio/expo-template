@@ -4,6 +4,7 @@ import { View } from "react-native";
 
 import { AuthLayout, AuthFooter } from "@/components/auth";
 import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
+import { Form } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
 import { validateEmail } from "@/lib/validation";
@@ -60,7 +61,7 @@ export default function PasswordReset() {
             title="Reset Password"
             subtitle="We'll send you instructions to reset your password"
             footer={<AuthFooter promptText="Remember your password?" linkText="Sign In" linkPath="/(auth)/sign-in" />}>
-            <View className="flex flex-col gap-5">
+            <Form onSubmit={handleResetPassword}>
                 <EmailInput
                     ref={fieldState.email.ref}
                     value={fieldState.email.value}
@@ -73,14 +74,14 @@ export default function PasswordReset() {
                 />
 
                 <FormError error={formError} />
-            </View>
 
-            <SubmitButton
-                onPress={handleResetPassword}
-                isLoading={isLoading}
-                text="Send Reset Instructions"
-                loadingText="Sending..."
-            />
+                <SubmitButton
+                    onPress={handleResetPassword}
+                    isLoading={isLoading}
+                    text="Send Reset Instructions"
+                    loadingText="Sending..."
+                />
+            </Form>
         </AuthLayout>
     );
 }

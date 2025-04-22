@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { ActivityIndicator, View } from "react-native";
 
 import { PasswordInput } from "@/components/auth/common";
+import { Form } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -72,7 +73,7 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
     };
 
     return (
-        <View className="flex flex-col gap-4">
+        <Form onSubmit={handleSubmit(onSubmit)}>
             <Text className="font-medium text-destructive">
                 Deleting your account is permanent and cannot be undone. All your data will be removed.
             </Text>
@@ -135,6 +136,6 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
                     {isSubmitting ? <ActivityIndicator color="white" size="small" /> : <Text>Delete Account</Text>}
                 </Button>
             </View>
-        </View>
+        </Form>
     );
 }

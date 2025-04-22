@@ -1,7 +1,7 @@
 import * as React from "react";
-import { View } from "react-native";
 
 import { PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
+import { Form } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateConfirmPassword, validatePassword } from "@/lib/validation";
 import { updatePassword } from "@/services/auth";
@@ -36,15 +36,15 @@ export const UpdatePasswordForm = ({ onSuccess, onError }: UpdatePasswordFormPro
                 // Reset form
                 fieldState.password.setValue("");
                 fieldState.confirmPassword.setValue("");
-                if (onSuccess) onSuccess();
+                onSuccess?.();
             });
-        } catch (error: any) {
-            if (onError) onError(error);
+        } catch (error) {
+            onError?.(error as Error);
         }
     };
 
     return (
-        <View className="flex flex-col gap-5">
+        <Form onSubmit={handleUpdatePassword}>
             <PasswordInput
                 ref={fieldState.password.ref}
                 value={fieldState.password.value}
@@ -54,18 +54,20 @@ export const UpdatePasswordForm = ({ onSuccess, onError }: UpdatePasswordFormPro
                 onClear={fieldState.password.clearValue}
                 onBlur={fieldState.password.handleBlur}
                 onSubmitEditing={() => fieldState.confirmPassword.ref.current?.focus()}
+                textContentType="newPassword"
             />
 
             <PasswordInput
                 ref={fieldState.confirmPassword.ref}
                 value={fieldState.confirmPassword.value}
                 onChangeText={fieldState.confirmPassword.setValue}
-                placeholder="Confirm Password"
+                placeholder="Confirm New Password"
                 error={fieldState.confirmPassword.error || ""}
                 onClear={fieldState.confirmPassword.clearValue}
                 onBlur={fieldState.confirmPassword.handleBlur}
                 onSubmitEditing={handleUpdatePassword}
                 returnKeyType="done"
+                textContentType="newPassword"
             />
 
             <FormError error={formError} />
@@ -74,8 +76,8 @@ export const UpdatePasswordForm = ({ onSuccess, onError }: UpdatePasswordFormPro
                 onPress={handleUpdatePassword}
                 isLoading={isLoading}
                 text="Update Password"
-                className="h-14"
+                loadingText="Updating..."
             />
-        </View>
+        </Form>
     );
 };

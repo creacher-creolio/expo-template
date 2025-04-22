@@ -1,9 +1,9 @@
 import { useRouter } from "expo-router";
 import * as React from "react";
-import { View } from "react-native";
 
 import { AuthLayout, AuthFooter } from "@/components/auth";
 import { EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
+import { Form } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";
 import { signUp } from "@/services/auth";
@@ -57,7 +57,7 @@ export default function SignUp() {
             subtitle="Sign up for a new account"
             successMessage={successMessage}
             footer={<AuthFooter promptText="Already have an account?" linkText="Sign In" linkPath="/(auth)/sign-in" />}>
-            <View className="flex flex-col gap-5">
+            <Form onSubmit={handleSignUp}>
                 <EmailInput
                     ref={fieldState.email.ref}
                     value={fieldState.email.value}
@@ -93,14 +93,14 @@ export default function SignUp() {
                 />
 
                 <FormError error={formError} />
-            </View>
 
-            <SubmitButton
-                onPress={handleSignUp}
-                isLoading={isLoading}
-                text="Sign Up"
-                loadingText="Creating Account..."
-            />
+                <SubmitButton
+                    onPress={handleSignUp}
+                    isLoading={isLoading}
+                    text="Sign Up"
+                    loadingText="Creating Account..."
+                />
+            </Form>
         </AuthLayout>
     );
 }
