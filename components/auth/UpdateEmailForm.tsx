@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 
-import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
+import { EmailInput, FormError, SubmitButton } from "@/components/auth";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateEmail } from "@/lib/validation";
