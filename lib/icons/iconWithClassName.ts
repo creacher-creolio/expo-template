@@ -4,6 +4,22 @@ import { Platform } from "react-native";
 
 import { cn } from "../utils";
 
+// List of responder props that cause warnings on web
+const RESPONDER_PROPS = [
+    "onResponderTerminate",
+    "onResponderTerminationRequest",
+    "onStartShouldSetResponder",
+    "onStartShouldSetResponderCapture",
+    "onMoveShouldSetResponder",
+    "onMoveShouldSetResponderCapture",
+    "onResponderGrant",
+    "onResponderReject",
+    "onResponderMove",
+    "onResponderRelease",
+    "onResponderEnd",
+    "onResponderStart",
+];
+
 export function iconWithClassName(icon: LucideIcon) {
     cssInterop(icon, {
         className: {
@@ -14,53 +30,20 @@ export function iconWithClassName(icon: LucideIcon) {
             },
         },
     });
-
     // Wrap icon to set default className
     const wrappedIcon = (props: any) => {
-        // For web platform, extract only the props we need
-        // This avoids passing unknown props like onResponderTerminate to DOM
-        if (Platform.OS === "web") {
-            const {
-                className,
-                color,
-                size,
-                stroke,
-                strokeWidth,
-                style,
-                fill,
-                // Explicitly omit responder props that cause warnings
-                onResponderTerminate,
-                onResponderTerminationRequest,
-                onStartShouldSetResponder,
-                onStartShouldSetResponderCapture,
-                onMoveShouldSetResponder,
-                onMoveShouldSetResponderCapture,
-                onResponderGrant,
-                onResponderReject,
-                onResponderMove,
-                onResponderRelease,
-                onResponderEnd,
-                onResponderStart,
-                ...restProps
-            } = props;
+        const mergedProps = { className: cn("text-foreground", props.className), ...props };
 
-            // Only pass the props that web SVG components need
-            return icon({
-                className: cn("text-foreground", className),
-                color,
-                size,
-                stroke,
-                strokeWidth,
-                style,
-                fill,
-                ...restProps
+        // Filter out responder props when running on web
+        if (Platform.OS === "web") {
+            RESPONDER_PROPS.forEach(prop => {
+                if (prop in mergedProps) {
+                    delete mergedProps[prop];
+                }
             });
         }
 
-        // For native platforms, pass all props through
-        const mergedProps = { className: cn("text-foreground", props.className), ...props };
         return icon(mergedProps);
     };
-
     return wrappedIcon as LucideIcon;
 }
