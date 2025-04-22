@@ -2,6 +2,7 @@ import * as React from "react";
 import { Pressable, View, type TextInputProps } from "react-native";
 
 import { Input } from "@/components/ui/input";
+import { Text } from "@/components/ui/text";
 import { XIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 
@@ -76,25 +77,27 @@ const InputWithIcon = React.forwardRef<React.ElementRef<typeof Input>, InputWith
                     />
 
                     <View className="absolute right-3.5 z-10 flex h-full flex-row items-center justify-center gap-2">
-                        {showClear && (
-                            <Pressable
-                                onPress={handleClear}
-                                className="flex h-10 items-center justify-center p-2"
-                                accessible={false}
-                                accessibilityElementsHidden={true}
-                                importantForAccessibility="no"
-                                tabIndex={-1}>
-                                <XIcon className="h-5 w-5 text-muted-foreground" />
-                            </Pressable>
-                        )}
+                        <>
+                            {showClear && (
+                                <Pressable
+                                    onPress={handleClear}
+                                    className="flex h-10 items-center justify-center p-2"
+                                    accessible={false}
+                                    accessibilityElementsHidden={true}
+                                    importantForAccessibility="no"
+                                    tabIndex={-1}>
+                                    <XIcon className="h-5 w-5 text-muted-foreground" />
+                                </Pressable>
+                            )}
 
-                        {endIcon && <View className="flex h-10 items-center justify-center p-2">{endIcon}</View>}
+                            {endIcon && <View className="flex h-10 items-center justify-center p-2">{endIcon}</View>}
+                        </>
                     </View>
                 </View>
 
                 {error ? (
                     <View className="px-1">
-                        <View className="text-sm text-destructive">{error}</View>
+                        <Text className="text-sm text-destructive">{error}</Text>
                     </View>
                 ) : null}
             </View>
