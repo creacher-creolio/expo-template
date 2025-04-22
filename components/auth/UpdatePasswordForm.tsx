@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 
-import { PasswordInput, FormError, SubmitButton } from "@/components/auth";
+import { PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateConfirmPassword, validatePassword } from "@/lib/validation";
 import { updatePassword } from "@/services/auth";
