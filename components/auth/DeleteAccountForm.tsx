@@ -2,7 +2,7 @@ import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ActivityIndicator, View } from "react-native";
 
-import { PasswordInput } from "@/components/auth/PasswordInput";
+import { PasswordInput } from "@/components/auth/common";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -58,7 +58,7 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
 
             onSuccess();
         } catch (error: any) {
-            if (error.message?.includes("password")) {
+            if (error.message?.includes("password") || error.message?.includes("credentials")) {
                 setError("password", {
                     type: "validate",
                     message: "Incorrect password",
