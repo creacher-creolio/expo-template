@@ -11,6 +11,7 @@ import { signInWithPassword } from "@/services/auth";
 
 export default function SignIn() {
     const router = useRouter();
+    const [initialFocusComplete, setInitialFocusComplete] = React.useState(false);
 
     const { fieldState, isLoading, formError, handleSubmit, focusFirstField } = useAuthForm({
         email: {
@@ -22,8 +23,12 @@ export default function SignIn() {
     });
 
     React.useEffect(() => {
-        return focusFirstField();
-    }, [focusFirstField]);
+        if (!initialFocusComplete) {
+            const cleanup = focusFirstField();
+            setInitialFocusComplete(true);
+            return cleanup;
+        }
+    }, [focusFirstField, initialFocusComplete]);
 
     const handleSignIn = async () => {
         try {

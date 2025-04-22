@@ -11,6 +11,7 @@ import { signUp } from "@/services/auth";
 export default function SignUp() {
     const router = useRouter();
     const [successMessage, setSuccessMessage] = React.useState("");
+    const [initialFocusComplete, setInitialFocusComplete] = React.useState(false);
 
     const validateConfirmPasswordWithContext = (value: string) => {
         return validateConfirmPassword(fieldState.password.value, value);
@@ -29,8 +30,12 @@ export default function SignUp() {
     });
 
     React.useEffect(() => {
-        return focusFirstField();
-    }, [focusFirstField]);
+        if (!initialFocusComplete) {
+            const cleanup = focusFirstField();
+            setInitialFocusComplete(true);
+            return cleanup;
+        }
+    }, [focusFirstField, initialFocusComplete]);
 
     const handleSignUp = async () => {
         try {
