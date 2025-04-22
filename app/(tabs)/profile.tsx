@@ -98,7 +98,7 @@ function ProfileContent() {
 
                 {/* User Information Card */}
                 <Card className="mb-6">
-                    <CardHeader className="flex-row items-center pb-2">
+                    <CardHeader className="flex-row items-center">
                         <UserIcon className="mr-2 h-5 w-5 text-primary" />
                         <CardTitle>User Information</CardTitle>
                     </CardHeader>
@@ -122,7 +122,7 @@ function ProfileContent() {
 
                 {/* Account Settings Card */}
                 <Card className="mb-6">
-                    <CardHeader className="flex-row items-center pb-2">
+                    <CardHeader className="flex-row items-center">
                         <UserIcon className="mr-2 h-5 w-5 text-primary" />
                         <CardTitle>Account Settings</CardTitle>
                         {activeSection && (
