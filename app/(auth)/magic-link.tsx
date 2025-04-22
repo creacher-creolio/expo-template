@@ -2,7 +2,8 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 import { View } from "react-native";
 
-import { AuthLayout, AuthFooter, EmailInput, FormError, SubmitButton } from "@/components/auth";
+import { AuthLayout, AuthFooter } from "@/components/auth";
+import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
 import { validateEmail } from "@/lib/validation";

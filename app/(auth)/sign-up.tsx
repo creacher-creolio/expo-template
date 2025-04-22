@@ -2,7 +2,8 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 import { View } from "react-native";
 
-import { AuthLayout, AuthFooter, EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth";
+import { AuthLayout, AuthFooter } from "@/components/auth";
+import { EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";
 import { signUp } from "@/services/auth";
