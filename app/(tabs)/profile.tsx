@@ -184,7 +184,7 @@ function ProfileContent() {
                                     </Button>
                                 </View>
 
-                                <View className="flex-row items-center justify-between">
+                                {/* <View className="flex-row items-center justify-between">
                                     <View className="flex-row items-center">
                                         <XIcon className="mr-2 h-5 w-5 text-destructive" />
                                         <Text className="font-medium text-destructive">Delete Account</Text>
@@ -192,7 +192,7 @@ function ProfileContent() {
                                     <Button variant="destructive" size="sm" onPress={() => setActiveSection("delete")}>
                                         <Text>Delete</Text>
                                     </Button>
-                                </View>
+                                </View> */}
                             </View>
                         )}
                     </CardContent>
