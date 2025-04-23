@@ -5,8 +5,8 @@ import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
 import { Form } from "@/components/common";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
+import { updateEmail } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
-import { updateEmail } from "@/services/auth";
 
 interface UpdateEmailFormProps {
     currentEmail: string;

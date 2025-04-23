@@ -4,9 +4,9 @@ import { TouchableOpacity, View } from "react-native";
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Text } from "@/components/ui/text";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/contexts/AuthContext";
 import { LogOutIcon, UserIcon } from "@/lib/icons";
-import { signOut } from "@/services/auth";
+import { signOut } from "@/lib/services/auth";
 
 export function ProfileButton() {
     const router = useRouter();

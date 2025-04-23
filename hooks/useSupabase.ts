@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { supabase } from "@/services/supabase";
+import { supabase } from "@/lib/services/supabase";
 
 // Create inline test functions to avoid path resolution issues
 const testConnection = async () => {

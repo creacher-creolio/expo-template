@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 import { ActivityIndicator, View } from "react-native";
 
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/contexts/AuthContext";
 
 type ProtectedRouteProps = {
     children: React.ReactNode;

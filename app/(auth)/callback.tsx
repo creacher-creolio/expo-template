@@ -3,7 +3,7 @@ import * as React from "react";
 import { ActivityIndicator, View } from "react-native";
 
 import { Text } from "@/components/ui/text";
-import { supabase } from "@/services/supabase";
+import { supabase } from "@/lib/services/supabase";
 
 export default function AuthCallback() {
     const router = useRouter();

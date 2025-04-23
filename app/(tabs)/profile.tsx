@@ -7,9 +7,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/lib/contexts/AuthContext";
 import { UserIcon, MailIcon, LockIcon, LogOutIcon, XIcon } from "@/lib/icons";
-import { signOut } from "@/services/auth";
+import { signOut } from "@/lib/services/auth";
 
 export default function ProfileScreen() {
     return (

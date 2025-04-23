@@ -3,8 +3,8 @@
  * https://docs.expo.dev/guides/color-schemes/
  */
 
-import { NAV_THEME } from "@/constants/colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { NAV_THEME } from "@/lib/constants/colors";
 
 export function useThemeColor(
     props: { light?: string; dark?: string },

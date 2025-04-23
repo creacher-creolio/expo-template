@@ -7,8 +7,8 @@ import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
 import { Form } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
+import { resetPassword } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
-import { resetPassword } from "@/services/auth";
 
 export default function PasswordReset() {
     const router = useRouter();

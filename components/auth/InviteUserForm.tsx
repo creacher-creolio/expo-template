@@ -5,8 +5,8 @@ import { Form, InputWithIcon } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { AlertTriangleIcon, CheckCircleIcon, MailIcon } from "@/lib/icons";
+import { inviteUser } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
-import { inviteUser } from "@/services/auth";
 
 interface InviteUserFormProps {
     onSuccess?: () => void;

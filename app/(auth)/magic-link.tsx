@@ -7,8 +7,8 @@ import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
 import { Form } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
+import { signInWithMagicLink } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
-import { signInWithMagicLink } from "@/services/auth";
 
 export default function MagicLink() {
     const router = useRouter();

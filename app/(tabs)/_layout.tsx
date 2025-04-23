@@ -3,8 +3,8 @@ import { View } from "react-native";
 
 import { ProfileButton } from "@/components/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { NAV_THEME } from "@/constants/colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { NAV_THEME } from "@/lib/constants/colors";
 import { HomeIcon, DatabaseIcon, UserIcon } from "@/lib/icons";
 
 export default function TabsLayout() {

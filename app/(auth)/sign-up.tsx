@@ -5,8 +5,8 @@ import { AuthLayout, AuthFooter } from "@/components/auth";
 import { EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
 import { Form } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
+import { signUp } from "@/lib/services/auth";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";
-import { signUp } from "@/services/auth";
 
 export default function SignUp() {
     const router = useRouter();
