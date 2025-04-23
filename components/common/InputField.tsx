@@ -67,15 +67,15 @@ const InputFieldComponent = React.forwardRef<React.ElementRef<typeof Input>, Inp
 
         return (
             <View className={cn("mb-4", containerClassName)} accessible={true} accessibilityRole="none">
-                {label && <Label className={cn("mb-1.5", labelClassName)}>{label}</Label>}
+                {label && <Label className={cn("mb-2", labelClassName)}>{label}</Label>}
 
-                <View className="flex-row items-center overflow-hidden rounded-md border border-input bg-background">
+                <View className="flex-row items-center justify-around gap-2 overflow-hidden rounded-md border border-input bg-background px-2">
                     {renderLeftIcon()}
 
                     <Input
                         ref={ref}
                         className={cn(
-                            "flex-1 border-0 bg-transparent py-2 pl-0 pr-0",
+                            "flex-1 border-0 bg-transparent p-2",
                             leftIcon && "pl-0",
                             (rightIcon || showClear) && "pr-0",
                             error && "border-destructive",

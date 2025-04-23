@@ -29,7 +29,7 @@ export const AuthFooter = ({
 
     return (
         <View className="flex flex-col">
-            <View className="mb-4 flex-row justify-center">
+            <View className="mb-4 mt-2 flex-row justify-center">
                 <Text className="text-muted-foreground">{promptText} </Text>
                 <Text className="font-semibold text-primary" onPress={() => navigateTo(linkPath)}>
                     {linkText}

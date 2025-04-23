@@ -22,8 +22,8 @@ const FormComponent = React.forwardRef<React.ElementRef<typeof Card>, FormProps>
                 ref={ref}
                 className={cn(
                     "w-full border-0 bg-transparent shadow-none",
-                    spacing === "normal" && "space-y-4",
-                    spacing === "compact" && "space-y-2",
+                    spacing === "normal" && "gap-4",
+                    spacing === "compact" && "gap-2",
                     className
                 )}
                 accessibilityRole="none"

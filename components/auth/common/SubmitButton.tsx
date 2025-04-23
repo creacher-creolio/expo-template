@@ -11,20 +11,14 @@ interface SubmitButtonProps {
     className?: string;
 }
 
-const SubmitButtonComponent = ({
-    onPress,
-    isLoading,
-    loadingText,
-    text,
-    className = "mb-6 h-14",
-}: SubmitButtonProps) => {
+const SubmitButtonComponent = ({ onPress, isLoading, loadingText, text, className = "h-14" }: SubmitButtonProps) => {
     const buttonText = isLoading ? loadingText || `${text}ing...` : text;
 
     return (
         <Button
             onPress={onPress}
             disabled={isLoading}
-            className={`mt-6 ${className}`}
+            className={`${className}`}
             accessibilityLabel={buttonText}
             accessibilityState={{ disabled: isLoading, busy: isLoading }}>
             <Text>{buttonText}</Text>
