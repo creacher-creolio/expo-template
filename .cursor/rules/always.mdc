@@ -4,7 +4,9 @@ globs:
 alwaysApply: true
 ---
 ## Code Style
-- Use kebab-case for all file/folder names
+- Use kebab-case for all file/folder names except:
+    - use PascalCase for non-page/non-screen component file names
+    - use camelCase for hook file names
 - Use PascalCase for components, camelCase for variables/functions
 - Keep files under 200 lines and functions under 10 lines
 - Use meaningful variable names (10-30 chars) with auxiliary verbs (isLoading, hasError)
@@ -18,6 +20,7 @@ alwaysApply: true
 - Add comments for complex logic or non-obvious code
 - All non-self-explanatory functions should have brief explanatory comments
 - Preserve existing comments unless obsolete
+- For React Native projects: only use block comments
 
 ## Project Structure
 - Follow structure: 'app/', 'components/', 'utils/', 'hooks/', etc.
@@ -34,3 +37,15 @@ alwaysApply: true
 - Use PowerShell syntax for terminal commands on Windows
 - Use pnpm instead of npm
 - Prefer text, button, input, label, and alert from components/ui instead of from react-native
+
+## Best Practices
+- DRY (Don't Repeat Yourself)
+- SoC (Separation of Concerns): could involve file restructuring/splitting files, etc,...
+- KISS (Keep it Simple, Stupid): make sure the code is easy to read and understand
+- SOLID
+    1 - Single Responsibility Principle (SRP)
+    2 - Open/Closed Principle (OCP)
+    3 - Liskov Substitution Principle (LSP)
+    4 - Interface Segregation Principle (ISP)
+    5 - Dependency Inversion Principle (DIP)
+- YAGNI (You Aren't Gonna Need It): remove anything not currently being used
