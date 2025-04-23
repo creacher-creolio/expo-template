@@ -46,12 +46,9 @@ export const PasswordRule: ValidationRule = {
 
         if (value.length < 8) return ValidationMessages.password.minLength;
 
-        // Optional: Add more rigorous password checks
-        /*
         if (!/[A-Z]/.test(value)) return ValidationMessages.password.requireUppercase;
         if (!/[0-9]/.test(value)) return ValidationMessages.password.requireNumber;
-        if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) return ValidationMessages.password.requireSpecialChar;
-        */
+        // if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) return ValidationMessages.password.requireSpecialChar;
 
         return null;
     },
