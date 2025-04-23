@@ -1,14 +1,14 @@
 import * as React from "react";
 
 type ValidationFn = (value: string) => string | null;
-type FieldConfig = {
+
+export interface FieldConfig {
     initialValue?: string;
     validationFn?: ValidationFn;
-};
+    ref?: React.RefObject<any>;
+}
 
-type FormFields = Record<string, FieldConfig>;
-
-type FieldState = {
+export interface FieldState {
     value: string;
     error: string | null;
     ref: React.RefObject<any>;
@@ -16,9 +16,19 @@ type FieldState = {
     setValue: (value: string) => void;
     clearValue: () => void;
     handleBlur: () => void;
-};
+}
 
-export const useAuthForm = (fields: FormFields) => {
+export interface FormState {
+    fieldState: Record<string, FieldState>;
+    isLoading: boolean;
+    formError: string | null;
+    setFormError: (error: string | null) => void;
+    wasSubmitted: boolean;
+    handleSubmit: (submitFn: () => Promise<void>) => Promise<void>;
+    focusFirstField: () => () => void;
+}
+
+export const useAuthForm = (fields: Record<string, FieldConfig>): FormState => {
     const [formState, setFormState] = React.useState<Record<string, string>>(() => {
         const initialState: Record<string, string> = {};
         Object.entries(fields).forEach(([name, config]) => {
@@ -32,22 +42,16 @@ export const useAuthForm = (fields: FormFields) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [formError, setFormError] = React.useState<string | null>(null);
 
-    // Create refs for each field
-    const emailRef = React.useRef<any>(null);
-    const passwordRef = React.useRef<any>(null);
-    const confirmPasswordRef = React.useRef<any>(null);
-
-    // Map field names to their respective refs
+    // Create or use provided refs
     const fieldRefs = React.useMemo(() => {
-        const refs: Record<string, React.RefObject<any>> = {
-            email: emailRef,
-            password: passwordRef,
-            confirmPassword: confirmPasswordRef,
-        };
+        const refs: Record<string, React.RefObject<any>> = {};
+        Object.entries(fields).forEach(([name, config]) => {
+            refs[name] = config.ref || React.createRef();
+        });
         return refs;
-    }, []);
+    }, [fields]);
 
-    const validateField = (name: string, value: string) => {
+    const validateField = (name: string, value: string): boolean => {
         const validationFn = fields[name]?.validationFn;
         if (!validationFn) return true;
 
@@ -56,7 +60,7 @@ export const useAuthForm = (fields: FormFields) => {
         return !error;
     };
 
-    const handleSubmit = async (submitFn: () => Promise<void>) => {
+    const handleSubmit = async (submitFn: () => Promise<void>): Promise<void> => {
         setWasSubmitted(true);
         setFormError(null);
 
@@ -85,10 +89,14 @@ export const useAuthForm = (fields: FormFields) => {
             acc[name] = {
                 value: formState[name],
                 error: errors[name] || null,
-                ref: fieldRefs[name] || React.createRef(), // Fallback for any field not in the map
+                ref: fieldRefs[name],
                 validate: () => validateField(name, formState[name]),
                 setValue: (value: string) => {
                     setFormState(prev => ({ ...prev, [name]: value }));
+                    // If form was already submitted, validate on change
+                    if (wasSubmitted) {
+                        validateField(name, value);
+                    }
                 },
                 clearValue: () => {
                     setFormState(prev => ({ ...prev, [name]: "" }));
@@ -107,7 +115,7 @@ export const useAuthForm = (fields: FormFields) => {
         {} as Record<string, FieldState>
     );
 
-    const focusFirstField = () => {
+    const focusFirstField = (): (() => void) => {
         const firstField = Object.keys(fields)[0];
         const timer = setTimeout(() => {
             fieldRefs[firstField]?.current?.focus();
@@ -117,14 +125,11 @@ export const useAuthForm = (fields: FormFields) => {
 
     return {
         fieldState,
-        formState,
-        errors,
         isLoading,
         formError,
         setFormError,
         wasSubmitted,
         handleSubmit,
         focusFirstField,
-        refs: fieldRefs,
     };
 };

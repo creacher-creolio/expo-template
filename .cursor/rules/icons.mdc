@@ -3,7 +3,7 @@ description:
 globs: *.tsx
 alwaysApply: false
 ---
-- First, create a new file in the ~/lib/icons/ directory with the name of the LucideIcon.
+- First, create a new file in the @/lib/icons/ directory with the name of the LucideIcon.
 - Then, in each file:
     - Import the Icon from LucideIcon
     - Import the iconWithClassName function

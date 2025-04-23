@@ -2,8 +2,7 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 
 import { AuthLayout, AuthFooter } from "@/components/auth";
-import { EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
-import { Form } from "@/components/common";
+import { EmailInput, PasswordInput, BaseAuthForm } from "@/components/auth/common";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { signInWithPassword } from "@/lib/services/auth";
@@ -55,7 +54,12 @@ export default function SignIn() {
                     secondaryLinkPath="/(auth)/magic-link"
                 />
             }>
-            <Form onSubmit={handleSignIn}>
+            <BaseAuthForm
+                onSubmit={handleSignIn}
+                isSubmitting={isLoading}
+                buttonText="Sign In"
+                loadingText="Signing in..."
+                formError={formError}>
                 <EmailInput
                     ref={fieldState.email.ref}
                     value={fieldState.email.value}
@@ -77,16 +81,12 @@ export default function SignIn() {
                     returnKeyType="done"
                 />
 
-                <FormError error={formError} />
-
                 <Text
                     className="-mt-2.5 text-right text-sm font-medium text-primary"
                     onPress={() => router.replace("/(auth)/password-reset")}>
                     Forgot password?
                 </Text>
-
-                <SubmitButton onPress={handleSignIn} isLoading={isLoading} text="Sign In" loadingText="Signing in..." />
-            </Form>
+            </BaseAuthForm>
         </AuthLayout>
     );
 }

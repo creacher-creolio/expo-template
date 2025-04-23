@@ -2,8 +2,7 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 
 import { AuthLayout, AuthFooter } from "@/components/auth";
-import { EmailInput, PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
-import { Form } from "@/components/common";
+import { EmailInput, PasswordInput, BaseAuthForm } from "@/components/auth/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { signUp } from "@/lib/services/auth";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";
@@ -45,9 +44,7 @@ export default function SignUp() {
 
                 // Navigate after showing success message
                 setTimeout(() => {
-                    setTimeout(() => {
-                        router.replace("/(auth)/sign-in");
-                    }, 0);
+                    router.replace("/(auth)/sign-in");
                 }, 2000);
             });
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -62,7 +59,12 @@ export default function SignUp() {
             subtitle="Sign up for a new account"
             successMessage={successMessage}
             footer={<AuthFooter promptText="Already have an account?" linkText="Sign In" linkPath="/(auth)/sign-in" />}>
-            <Form onSubmit={handleSignUp}>
+            <BaseAuthForm
+                onSubmit={handleSignUp}
+                isSubmitting={isLoading}
+                buttonText="Sign Up"
+                loadingText="Creating Account..."
+                formError={formError}>
                 <EmailInput
                     ref={fieldState.email.ref}
                     value={fieldState.email.value}
@@ -96,16 +98,7 @@ export default function SignUp() {
                     returnKeyType="done"
                     textContentType="newPassword"
                 />
-
-                <FormError error={formError} />
-
-                <SubmitButton
-                    onPress={handleSignUp}
-                    isLoading={isLoading}
-                    text="Sign Up"
-                    loadingText="Creating Account..."
-                />
-            </Form>
+            </BaseAuthForm>
         </AuthLayout>
     );
 }

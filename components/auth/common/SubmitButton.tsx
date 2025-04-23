@@ -11,10 +11,26 @@ interface SubmitButtonProps {
     className?: string;
 }
 
-export const SubmitButton = ({ onPress, isLoading, loadingText, text, className = "mb-6 h-14" }: SubmitButtonProps) => {
+const SubmitButtonComponent = ({
+    onPress,
+    isLoading,
+    loadingText,
+    text,
+    className = "mb-6 h-14",
+}: SubmitButtonProps) => {
+    const buttonText = isLoading ? loadingText || `${text}ing...` : text;
+
     return (
-        <Button onPress={onPress} disabled={isLoading} className={`mt-6 ${className}`}>
-            <Text>{isLoading ? loadingText || `${text}ing...` : text}</Text>
+        <Button
+            onPress={onPress}
+            disabled={isLoading}
+            className={`mt-6 ${className}`}
+            accessibilityLabel={buttonText}
+            accessibilityState={{ disabled: isLoading, busy: isLoading }}>
+            <Text>{buttonText}</Text>
         </Button>
     );
 };
+
+// Memoize for better performance
+export const SubmitButton = React.memo(SubmitButtonComponent);

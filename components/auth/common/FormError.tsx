@@ -1,7 +1,6 @@
 import * as React from "react";
-import { View } from "react-native";
 
-import { Text } from "@/components/ui/text";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangleIcon } from "@/lib/icons";
 
 interface FormErrorProps {
@@ -9,13 +8,20 @@ interface FormErrorProps {
     showIcon?: boolean;
 }
 
-export const FormError = ({ error, showIcon = true }: FormErrorProps) => {
+const FormErrorComponent = ({ error, showIcon = true }: FormErrorProps) => {
     if (!error) return null;
 
     return (
-        <View className="flex-row items-center px-1">
-            {showIcon && <AlertTriangleIcon size={16} className="mr-2 text-destructive" />}
-            <Text className="text-sm text-destructive">{error}</Text>
-        </View>
+        <Alert
+            variant="destructive"
+            className="my-2 py-2"
+            icon={AlertTriangleIcon}
+            iconSize={16}
+            iconClassName="text-destructive">
+            <AlertDescription className="pl-7 text-destructive">{error}</AlertDescription>
+        </Alert>
     );
 };
+
+// Use React.memo for performance optimization
+export const FormError = React.memo(FormErrorComponent);

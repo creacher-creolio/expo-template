@@ -1,32 +1,17 @@
+import { EmailRule, PasswordRule, ValidationMessages } from "./form-rules";
+
 /**
  * Validates an email address
  */
 export const validateEmail = (email: string): string | null => {
-    if (!email.trim()) {
-        return "Email is required";
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        return "Please enter a valid email address";
-    }
-
-    return null;
+    return EmailRule.validate(email);
 };
 
 /**
  * Validates a password
  */
 export const validatePassword = (password: string): string | null => {
-    if (!password) {
-        return "Password is required";
-    }
-
-    if (password.length < 8) {
-        return "Password must be at least 8 characters long";
-    }
-
-    return null;
+    return PasswordRule.validate(password);
 };
 
 /**
@@ -34,11 +19,11 @@ export const validatePassword = (password: string): string | null => {
  */
 export const validateConfirmPassword = (password: string, confirmPassword: string): string | null => {
     if (!confirmPassword) {
-        return "Please confirm your password";
+        return ValidationMessages.required;
     }
 
     if (password !== confirmPassword) {
-        return "Passwords don't match";
+        return ValidationMessages.passwordMismatch;
     }
 
     return null;
