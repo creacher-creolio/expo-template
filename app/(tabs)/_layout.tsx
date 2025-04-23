@@ -4,8 +4,8 @@ import { View } from "react-native";
 import { ProfileButton } from "@/components/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { NAV_THEME } from "@/constants/colors";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { HomeIcon, DatabaseIcon, UserIcon } from "@/lib/icons";
-import { useColorScheme } from "@/lib/useColorScheme";
 
 export default function TabsLayout() {
     const { isDarkColorScheme } = useColorScheme();

@@ -9,8 +9,8 @@ import "react-native-reanimated";
 import { NAV_THEME } from "@/constants/colors";
 import { AuthProvider } from "@/contexts/AuthContext";
 import "@/global.css";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
-import { useColorScheme } from "@/lib/useColorScheme";
 
 const LIGHT_THEME: Theme = {
     ...DefaultTheme,
