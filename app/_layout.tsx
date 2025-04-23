@@ -7,7 +7,7 @@ import { Platform } from "react-native";
 import "react-native-reanimated";
 
 import { NAV_THEME } from "@/constants/colors";
-import { AuthProvider } from "@/contexts/auth-context";
+import { AuthProvider } from "@/contexts/AuthContext";
 import "@/global.css";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 import { useColorScheme } from "@/lib/useColorScheme";

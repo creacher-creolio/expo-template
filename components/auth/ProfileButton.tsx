@@ -4,7 +4,7 @@ import { TouchableOpacity, View } from "react-native";
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Text } from "@/components/ui/text";
-import { useAuth } from "@/contexts/auth-context";
+import { useAuth } from "@/contexts/AuthContext";
 import { LogOutIcon, UserIcon } from "@/lib/icons";
 import { signOut } from "@/services/auth";
 

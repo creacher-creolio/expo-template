@@ -8,7 +8,7 @@ import {
     type ViewProps,
 } from "react-native";
 
-import { useKeyboard } from "@/lib/keyboard";
+import { useKeyboard } from "@/hooks/useKeyboard";
 import { cn } from "@/lib/utils";
 
 interface KeyboardSafeAreaProps extends ViewProps {

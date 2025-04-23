@@ -2,7 +2,7 @@ import { Redirect } from "expo-router";
 import * as React from "react";
 import { ActivityIndicator, View } from "react-native";
 
-import { useAuth } from "@/contexts/auth-context";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function HomeRedirect() {
     const { isAuthenticated, isLoading } = useAuth();

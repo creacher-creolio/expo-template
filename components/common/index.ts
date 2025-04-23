@@ -1,4 +1,4 @@
 export { InputWithIcon } from "./InputWithIcon";
-export { KeyboardSafeArea } from "./keyboard-safe-area";
-export { CrossPlatformAlert } from "./cross-platform-alert";
+export { KeyboardSafeArea } from "./KeyboardSafeArea";
+export { CrossPlatformAlert } from "./CrossPlatformAlert";
 export { Form } from "./Form";
