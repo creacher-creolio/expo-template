@@ -15,7 +15,7 @@ interface AuthLayoutProps extends ViewProps {
 export const AuthLayout = ({ title, subtitle, children, footer, successMessage, ...props }: AuthLayoutProps) => {
     return (
         <KeyboardSafeArea contentContainerClassName="px-5 flex flex-col gap-4 justify-center py-6" {...props}>
-            <View className="mb-4 flex flex-col gap-2">
+            <View className="mb-2 flex flex-col gap-2">
                 <>
                     <Text className="text-center text-4xl font-bold text-foreground">{title}</Text>
                     {subtitle && <Text className="text-center text-lg text-muted-foreground">{subtitle}</Text>}

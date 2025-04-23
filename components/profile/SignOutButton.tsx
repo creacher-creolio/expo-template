@@ -38,7 +38,7 @@ export const SignOutButton = ({ onError }: SignOutButtonProps) => {
                 <ActivityIndicator color="white" size="small" />
             ) : (
                 <>
-                    <LogOutIcon className="mr-2 h-5 w-5" />
+                    <LogOutIcon className="mr-2 h-5 w-5 text-foreground" />
                     <Text>Sign Out</Text>
                 </>
             )}

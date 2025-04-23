@@ -50,7 +50,7 @@ export default function MagicLink() {
                     onPress={() => router.replace("/(auth)/sign-in")}
                     isLoading={false}
                     text="Back to Sign In"
-                    className="h-14"
+                    className="mt-6 h-14"
                 />
             </AuthLayout>
         );

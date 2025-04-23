@@ -66,7 +66,7 @@ const InputFieldComponent = React.forwardRef<React.ElementRef<typeof Input>, Inp
         }, [showClear, onClear]);
 
         return (
-            <View className={cn("mb-4", containerClassName)} accessible={true} accessibilityRole="none">
+            <View className={cn("mb-2", containerClassName)} accessible={true} accessibilityRole="none">
                 {label && <Label className={cn("mb-2", labelClassName)}>{label}</Label>}
 
                 <View className="flex-row items-center justify-around gap-2 overflow-hidden rounded-md border border-input bg-background px-2">
