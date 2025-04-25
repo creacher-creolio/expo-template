@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import { InputField } from "@/components/common";
 import { MailIcon } from "@/lib/icons";
+
+import { InputField } from "./InputField";
 
 interface EmailInputProps {
     value: string;

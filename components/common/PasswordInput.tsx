@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Pressable } from "react-native";
 
-import { InputField } from "@/components/common";
 import { EyeIcon, EyeOffIcon, LockIcon } from "@/lib/icons";
+
+import { InputField } from "./InputField";
 
 interface PasswordInputProps {
     value: string;

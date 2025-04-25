@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { PasswordInput, FormError, SubmitButton } from "@/components/auth/common";
-import { Form } from "@/components/common";
+import { Form, FormError, PasswordInput, SubmitButton } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { updatePassword } from "@/lib/services/auth";
 import { validateConfirmPassword, validatePassword } from "@/lib/validation";

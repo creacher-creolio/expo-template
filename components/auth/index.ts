@@ -1,6 +1,7 @@
 export { InputWithIcon } from "../common/InputWithIcon";
 export { AuthFooter } from "./AuthFooter";
 export { AuthLayout } from "./AuthLayout";
+export { BaseAuthForm } from "./BaseAuthForm";
 export { DeleteAccountForm } from "./DeleteAccountForm";
 export { InviteUserForm } from "./InviteUserForm";
 export { ProfileButton } from "./ProfileButton";

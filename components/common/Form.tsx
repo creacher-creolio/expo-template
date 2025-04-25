@@ -1,8 +1,9 @@
 import * as React from "react";
 
-import { FormError } from "@/components/auth/common";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+
+import { FormError } from "./FormError";
 
 export interface FormProps extends React.ComponentPropsWithoutRef<typeof Card> {
     children: React.ReactNode;

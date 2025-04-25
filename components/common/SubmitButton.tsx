@@ -8,13 +8,23 @@ interface SubmitButtonProps extends React.ComponentPropsWithoutRef<typeof Button
     isLoading?: boolean;
     text: string;
     loadingText?: string;
+    className?: string;
 }
 
-export const SubmitButton = ({ isLoading, text, loadingText, disabled, ...props }: SubmitButtonProps) => {
+const SubmitButtonComponent: React.FC<SubmitButtonProps> = ({
+    isLoading = false,
+    text,
+    loadingText,
+    disabled,
+    className = "mt-2 w-full",
+    ...props
+}: SubmitButtonProps) => {
     return (
         <Button
-            className="mt-2 w-full flex-row items-center justify-center"
+            className={`flex-row items-center justify-center ${className}`}
             disabled={isLoading || disabled}
+            accessibilityLabel={isLoading ? loadingText || "Loading..." : text}
+            accessibilityState={{ disabled: isLoading || !!disabled, busy: isLoading }}
             {...props}>
             {isLoading ? (
                 <>
@@ -27,3 +37,6 @@ export const SubmitButton = ({ isLoading, text, loadingText, disabled, ...props 
         </Button>
     );
 };
+
+// Memoize for better performance
+export const SubmitButton = React.memo(SubmitButtonComponent);

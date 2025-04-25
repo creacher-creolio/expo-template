@@ -2,9 +2,8 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 import { View } from "react-native";
 
-import { AuthLayout, AuthFooter } from "@/components/auth";
-import { EmailInput, FormError, SubmitButton } from "@/components/auth/common";
-import { Form } from "@/components/common";
+import { AuthFooter, AuthLayout } from "@/components/auth";
+import { EmailInput, Form, FormError, SubmitButton } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
 import { signInWithMagicLink } from "@/lib/services/auth";

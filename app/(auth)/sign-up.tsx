@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import * as React from "react";
 
-import { AuthLayout, AuthFooter } from "@/components/auth";
-import { EmailInput, PasswordInput, BaseAuthForm } from "@/components/auth/common";
+import { AuthFooter, AuthLayout, BaseAuthForm } from "@/components/auth";
+import { EmailInput, PasswordInput } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { signUp } from "@/lib/services/auth";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";

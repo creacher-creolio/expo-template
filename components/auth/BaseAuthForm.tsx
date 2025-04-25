@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { SubmitButton } from "@/components/auth/common";
-import { Form } from "@/components/common";
+import { Form, SubmitButton } from "@/components/common";
 import { useFormValidation, ValidationRule } from "@/hooks/useFormValidation";
 
 export interface BaseAuthFormProps {

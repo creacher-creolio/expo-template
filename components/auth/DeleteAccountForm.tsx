@@ -2,8 +2,7 @@ import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ActivityIndicator, View } from "react-native";
 
-import { PasswordInput } from "@/components/auth/common";
-import { Form } from "@/components/common";
+import { Form, PasswordInput } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
