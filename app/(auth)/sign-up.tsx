@@ -4,7 +4,7 @@ import * as React from "react";
 import { AuthFooter, AuthLayout, BaseAuthForm } from "@/components/auth";
 import { EmailInput, PasswordInput } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
-import { signUp } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";
 
 export default function SignUp() {
@@ -39,7 +39,7 @@ export default function SignUp() {
     const handleSignUp = async () => {
         try {
             await handleSubmit(async () => {
-                await signUp(fieldState.email.value, fieldState.password.value);
+                await auth.signUp(fieldState.email.value, fieldState.password.value);
                 setSuccessMessage("Account created successfully. Please check your email to confirm your account.");
 
                 // Navigate after showing success message

@@ -2,8 +2,8 @@ import { useRouter } from "expo-router";
 import * as React from "react";
 
 import { Form, FormField, SubmitButton } from "@/components/common";
-import { signUp } from "@/lib/services/auth";
-import { validateEmail, validatePassword, validateConfirmPassword } from "@/lib/validation";
+import { auth } from "@/lib/services/auth";
+import { validateConfirmPassword, validateEmail, validatePassword } from "@/lib/validation";
 
 interface SignUpFormProps {
     onSuccess?: () => void;
@@ -55,7 +55,7 @@ export const SignUpForm = ({ onSuccess, onError }: SignUpFormProps) => {
         setFormError(null);
 
         try {
-            await signUp(email, password);
+            await auth.signUp(email, password);
             if (onSuccess) {
                 onSuccess();
             } else {

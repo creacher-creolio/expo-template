@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Text } from "@/components/ui/text";
-import { deleteUser, signInWithPassword } from "@/lib/services/auth";
+import { auth, deleteUser } from "@/lib/services/auth";
 
 type FormData = {
     password: string;
@@ -51,7 +51,7 @@ export function DeleteAccountForm({ email, onSuccess, onError, onCancel }: Delet
             }
 
             // First verify the password is correct
-            await signInWithPassword(email, data.password);
+            await auth.signInWithPassword(email, data.password);
 
             // Then delete the account
             await deleteUser();

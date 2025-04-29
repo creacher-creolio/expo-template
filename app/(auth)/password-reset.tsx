@@ -6,7 +6,7 @@ import { AuthFooter, AuthLayout } from "@/components/auth";
 import { EmailInput, Form, FormError, SubmitButton } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
-import { resetPassword } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
 
 export default function PasswordReset() {
@@ -26,7 +26,7 @@ export default function PasswordReset() {
     const handleResetPassword = async () => {
         try {
             await handleSubmit(async () => {
-                await resetPassword(fieldState.email.value);
+                await auth.resetPassword(fieldState.email.value);
                 setResetEmailSent(true);
             });
             // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -6,7 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Text } from "@/components/ui/text";
 import { useAuth } from "@/lib/contexts/AuthContext";
 import { LogOutIcon, UserIcon } from "@/lib/icons";
-import { signOut } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 
 export function ProfileButton() {
     const router = useRouter();
@@ -24,7 +24,7 @@ export function ProfileButton() {
 
     const handleSignOut = async () => {
         try {
-            await signOut();
+            await auth.signOut();
             router.replace("/(tabs)");
         } catch (error) {
             console.error("Error signing out:", error);

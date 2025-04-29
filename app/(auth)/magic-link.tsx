@@ -6,7 +6,7 @@ import { AuthFooter, AuthLayout } from "@/components/auth";
 import { EmailInput, Form, FormError, SubmitButton } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { CheckCircleIcon } from "@/lib/icons";
-import { signInWithMagicLink } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
 
 export default function MagicLink() {
@@ -26,7 +26,7 @@ export default function MagicLink() {
     const handleSendMagicLink = async () => {
         try {
             await handleSubmit(async () => {
-                await signInWithMagicLink(fieldState.email.value);
+                await auth.sendMagicLink(fieldState.email.value);
                 setEmailSent(true);
             });
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -39,8 +39,8 @@ export default function MagicLink() {
         return (
             <AuthLayout
                 title="Check Your Email"
-                subtitle={`We've sent a magic link to ${fieldState.email.value}.
-                Click the link in the email to sign in.`}>
+                // eslint-disable-next-line max-len
+                subtitle={`We've sent a magic link to ${fieldState.email.value}. Click the link in the email to sign in.`}>
                 <View className="items-center">
                     <CheckCircleIcon size={64} className="text-primary" />
                 </View>

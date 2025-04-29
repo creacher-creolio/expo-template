@@ -5,7 +5,7 @@ import { ActivityIndicator } from "react-native";
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { LogOutIcon } from "@/lib/icons";
-import { signOut } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 
 interface SignOutButtonProps {
     onError?: (error: string) => void;
@@ -17,7 +17,7 @@ export const SignOutButton = ({ onError }: SignOutButtonProps) => {
     const handleSignOut = async () => {
         try {
             setIsLoading(true);
-            await signOut();
+            await auth.signOut();
             router.replace("/");
         } catch (err: any) {
             if (onError) {

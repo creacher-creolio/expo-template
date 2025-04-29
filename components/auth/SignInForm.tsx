@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { Form, FormField, SubmitButton } from "@/components/common";
 import { Text } from "@/components/ui/text";
-import { signInWithPassword } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateEmail, validatePassword } from "@/lib/validation";
 
 interface SignInFormProps {
@@ -50,7 +50,7 @@ export const SignInForm = ({ onSuccess, onError }: SignInFormProps) => {
         setFormError(null);
 
         try {
-            await signInWithPassword(email, password);
+            await auth.signInWithPassword(email, password);
             if (onSuccess) {
                 onSuccess();
             } else {

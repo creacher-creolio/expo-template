@@ -5,7 +5,7 @@ import { AuthFooter, AuthLayout, BaseAuthForm } from "@/components/auth";
 import { EmailInput, PasswordInput } from "@/components/common";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
-import { signInWithPassword } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateEmail, validatePassword } from "@/lib/validation";
 
 export default function SignIn() {
@@ -32,7 +32,7 @@ export default function SignIn() {
     const handleSignIn = async () => {
         try {
             await handleSubmit(async () => {
-                await signInWithPassword(fieldState.email.value, fieldState.password.value);
+                await auth.signInWithPassword(fieldState.email.value, fieldState.password.value);
                 router.replace("/(tabs)");
             });
             // eslint-disable-next-line @typescript-eslint/no-unused-vars

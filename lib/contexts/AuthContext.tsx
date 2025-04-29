@@ -1,8 +1,10 @@
 import { Session, User } from "@supabase/supabase-js";
+import * as Linking from "expo-linking";
 import * as React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getCurrentUser, getSession, onAuthStateChange } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
+import { supabase } from "@/lib/services/supabase";
 
 type AuthContextType = {
     session: Session | null;
@@ -25,36 +27,46 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Listen for auth state changes
     useEffect(() => {
-        // Initial session check
-        const initializeAuth = async () => {
-            try {
-                const currentSession = await getSession();
-                setSession(currentSession);
-
-                if (currentSession) {
-                    const currentUser = await getCurrentUser();
-                    setUser(currentUser);
-                }
-            } catch (error) {
-                console.error("Error initializing auth:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        initializeAuth();
-
-        // Subscribe to auth changes
-        const subscription = onAuthStateChange((event, changedSession) => {
-            setSession(changedSession);
-            setUser(changedSession?.user || null);
+        // Check active sessions and subscribe to auth changes
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setSession(session);
+            setUser(session?.user ?? null);
+            setIsLoading(false);
         });
 
-        // Cleanup on unmount
-        return () => {
-            subscription.subscription.unsubscribe();
+        const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
+            console.log("Auth state changed:", session);
+            setSession(session);
+            setUser(session?.user ?? null);
+        });
+        // Check initial user state
+        supabase.auth.getUser().then(({ data: { user } }) => {
+            console.log("Initial user:", user);
+            setUser(user ?? null);
+            setIsLoading(false);
+        });
+        return () => authListener.subscription?.unsubscribe();
+    }, []);
+
+    // Handle deep links
+    useEffect(() => {
+        // Handle initial URL
+        const handleInitial = async () => {
+            const url = await Linking.getInitialURL();
+            console.log("Initial URL:", url);
+            await auth.handleDeepLink(url);
         };
+        handleInitial();
+
+        // Listen for URLs while app is running
+        const subscription = Linking.addEventListener("url", ({ url }) => {
+            console.log("Incoming URL:", url);
+            auth.handleDeepLink(url);
+        });
+
+        return () => subscription.remove();
     }, []);
 
     const value = {

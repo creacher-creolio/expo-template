@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { EmailInput, Form, FormError, SubmitButton } from "@/components/common";
 import { Text } from "@/components/ui/text";
 import { useAuthForm } from "@/hooks/useAuthForm";
-import { updateEmail } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateEmail } from "@/lib/validation";
 
 interface UpdateEmailFormProps {
@@ -37,7 +37,7 @@ export const UpdateEmailForm = ({ currentEmail, onSuccess, onError }: UpdateEmai
     const handleUpdateEmail = async () => {
         try {
             await handleSubmit(async () => {
-                await updateEmail(fieldState.email.value);
+                await auth.updateEmail(fieldState.email.value);
                 setIsSuccess(true);
                 if (onSuccess) onSuccess();
             });

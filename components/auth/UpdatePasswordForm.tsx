@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Form, FormError, PasswordInput, SubmitButton } from "@/components/common";
 import { useAuthForm } from "@/hooks/useAuthForm";
-import { updatePassword } from "@/lib/services/auth";
+import { auth } from "@/lib/services/auth";
 import { validateConfirmPassword, validatePassword } from "@/lib/validation";
 
 interface UpdatePasswordFormProps {
@@ -31,7 +31,7 @@ export const UpdatePasswordForm = ({ onSuccess, onError }: UpdatePasswordFormPro
     const handleUpdatePassword = async () => {
         try {
             await handleSubmit(async () => {
-                await updatePassword(fieldState.password.value);
+                await auth.updatePassword(fieldState.password.value);
                 // Reset form
                 fieldState.password.setValue("");
                 fieldState.confirmPassword.setValue("");
