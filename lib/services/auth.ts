@@ -1,8 +1,15 @@
 import { User } from "@supabase/supabase-js";
+import { makeRedirectUri } from "expo-auth-session";
 import * as QueryParams from "expo-auth-session/build/QueryParams";
-import * as Linking from "expo-linking";
+import * as WebBrowser from "expo-web-browser";
 
 import { supabase } from "./supabase";
+
+WebBrowser.maybeCompleteAuthSession(); // required for web only
+const redirectTo = makeRedirectUri({
+    scheme: "basetemplate",
+    path: "(tabs)",
+});
 
 // Core authentication functions
 export const auth = {
@@ -29,7 +36,6 @@ export const auth = {
 
     // Magic link authentication
     async sendMagicLink(email: string) {
-        const redirectTo = Linking.createURL("(tabs)");
         const { data, error } = await supabase.auth.signInWithOtp({
             email,
             options: { emailRedirectTo: redirectTo },
@@ -40,7 +46,6 @@ export const auth = {
 
     // Password management
     async resetPassword(email: string) {
-        const redirectTo = Linking.createURL("(tabs)");
         const { data, error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
         if (error) throw error;
         return data;
