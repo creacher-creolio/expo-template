@@ -50,8 +50,8 @@ export default function RootLayout() {
             <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
             <AuthProvider>
                 <Stack>
-                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                    <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+                    <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: "none" }} />
+                    <Stack.Screen name="(auth)" options={{ headerShown: false, animation: "none" }} />
                 </Stack>
                 <PortalHost />
             </AuthProvider>
