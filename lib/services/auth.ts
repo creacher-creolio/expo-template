@@ -1,4 +1,4 @@
-import { Session, User } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as Linking from "expo-linking";
 
@@ -63,25 +63,6 @@ export const auth = {
         return data;
     },
 
-    // Session management
-    async getSession(): Promise<Session | null> {
-        const {
-            data: { session },
-            error,
-        } = await supabase.auth.getSession();
-        if (error) throw error;
-        return session;
-    },
-
-    async getCurrentUser(): Promise<User | null> {
-        const {
-            data: { user },
-            error,
-        } = await supabase.auth.getUser();
-        if (error) throw error;
-        return user;
-    },
-
     // Deep linking handler
     async handleDeepLink(url: string | null) {
         if (!url) return null;
@@ -99,6 +80,16 @@ export const auth = {
         if (error) throw error;
         return data.session;
     },
+
+    // Session management
+    async getCurrentUser(): Promise<User | null> {
+        const {
+            data: { user },
+            error,
+        } = await supabase.auth.getUser();
+        if (error) throw error;
+        return user;
+    },
 };
 
 // Delete user account
@@ -114,18 +105,5 @@ export const deleteUser = async () => {
 export const inviteUser = async (email: string) => {
     const { data, error } = await supabase.auth.admin.inviteUserByEmail(email);
     if (error) throw error;
-    return data;
-};
-
-// Refresh the current session
-export const refreshSession = async () => {
-    const { data, error } = await supabase.auth.refreshSession();
-    if (error) throw error;
-    return data;
-};
-
-// Listen for auth state changes
-export const onAuthStateChange = (callback: (event: string, session: Session | null) => void) => {
-    const data = supabase.auth.onAuthStateChange(callback);
     return data;
 };

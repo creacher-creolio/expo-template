@@ -37,16 +37,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
 
         const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
-            console.log("Auth state changed:", session);
             setSession(session);
             setUser(session?.user ?? null);
         });
-        // Check initial user state
-        supabase.auth.getUser().then(({ data: { user } }) => {
-            console.log("Initial user:", user);
-            setUser(user ?? null);
-            setIsLoading(false);
-        });
+
         return () => authListener.subscription?.unsubscribe();
     }, []);
 
