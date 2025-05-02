@@ -16,3 +16,4 @@ export { MoonStar as MoonStarIcon } from "./MoonStar";
 export { Sun as SunIcon } from "./Sun";
 export { User as UserIcon } from "./User";
 export { X as XIcon } from "./X";
+export { Zap as ZapIcon } from "./Zap";

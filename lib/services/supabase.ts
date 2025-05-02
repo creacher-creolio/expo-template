@@ -3,6 +3,8 @@ import { createClient } from "@supabase/supabase-js";
 import { AppState, Platform } from "react-native";
 import "react-native-url-polyfill/auto";
 
+import { Database } from "@/lib/types/supabase";
+
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -13,7 +15,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 // Check if we're running in a browser or native environment
 const isWeb = Platform.OS === "web";
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     auth: {
         storage: isWeb ? undefined : AsyncStorage,
         autoRefreshToken: true,

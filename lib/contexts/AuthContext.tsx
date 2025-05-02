@@ -4,6 +4,7 @@ import * as React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { auth } from "@/lib/services/auth";
+import { initUserObservables, resetObservables } from "@/lib/services/legend-state";
 import { supabase } from "@/lib/services/supabase";
 
 type AuthContextType = {
@@ -33,12 +34,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
             setUser(session?.user ?? null);
+
+            // Initialize Legend State observables when user is authenticated
+            if (session?.user) {
+                initUserObservables(session.user.id);
+            }
+
             setIsLoading(false);
         });
 
-        const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
             setSession(session);
             setUser(session?.user ?? null);
+
+            // Initialize or reset observables based on auth state
+            if (event === "SIGNED_IN" && session?.user) {
+                initUserObservables(session.user.id);
+            } else if (event === "SIGNED_OUT") {
+                resetObservables();
+            }
         });
 
         return () => authListener.subscription?.unsubscribe();

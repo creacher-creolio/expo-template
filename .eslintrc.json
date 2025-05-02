@@ -85,11 +85,20 @@
     },
     "overrides": [
         {
-            "files": ["components/ui/**/*.{js,ts,jsx,tsx}", "lib.{js,ts,jsx,tsx}"],
+            "files": ["components/ui/**/*.{js,ts,jsx,tsx}"],
             "rules": {
                 "max-len": "off",
                 "max-lines": "off",
                 "react-hooks/exhaustive-deps": "off"
+            }
+        },
+        {
+            "files": ["**/types/**/*.{js,ts,jsx,tsx}"],
+            "rules": {
+                "no-unused-vars": "off",
+                "no-explicit-any": "off",
+                "@typescript-eslint/no-unused-vars": "off",
+                "@typescript-eslint/no-explicit-any": "off"
             }
         }
     ]

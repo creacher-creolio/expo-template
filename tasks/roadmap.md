@@ -40,7 +40,7 @@ This to-do list outlines the steps to enhance a React Native template (using Exp
   - <https://legendapp.com/open-source/state/v3/react/helpers-and-hooks/>
   - <https://legendapp.com/open-source/state/v3/react/react-examples/>
 - **Steps**:
-  - Create a centralized state management file (e.g., `state/index.js`) to define global state stores.
+  - Create a centralized state management file (e.g., `lib/state/index.js`) to define global state stores.
   - Set up initial state for authentication (e.g., `user`, `isAuthenticated`) and basic app data.
   - Configure reactive components to use Legend State’s `observer` for UI updates.
   - Test state reactivity by connecting a simple UI component (e.g., display user email after login).

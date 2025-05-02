@@ -5,7 +5,7 @@ import { ProfileButton } from "@/components/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { NAV_THEME } from "@/lib/constants/colors";
-import { HomeIcon, DatabaseIcon, UserIcon } from "@/lib/icons";
+import { HomeIcon, DatabaseIcon, UserIcon, ZapIcon } from "@/lib/icons";
 
 export default function TabsLayout() {
     const { isDarkColorScheme } = useColorScheme();
@@ -35,6 +35,13 @@ export default function TabsLayout() {
                 options={{
                     title: "Supabase",
                     tabBarIcon: () => <DatabaseIcon className="text-foreground" />,
+                }}
+            />
+            <Tabs.Screen
+                name="legend-state"
+                options={{
+                    title: "Legend State",
+                    tabBarIcon: () => <ZapIcon className="text-foreground" />,
                 }}
             />
             <Tabs.Screen
