@@ -1,6 +1,6 @@
-import { observable } from "@legendapp/state";
 import { observablePersistAsyncStorage } from "@legendapp/state/persist-plugins/async-storage";
-import { configureSyncedSupabase, syncedSupabase } from "@legendapp/state/sync-plugins/supabase";
+import { configureSynced } from "@legendapp/state/sync";
+import { syncedSupabase } from "@legendapp/state/sync-plugins/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
@@ -10,47 +10,40 @@ import { supabase } from "./supabase";
 // Configure ID generator for Legend State
 const generateId = () => uuidv4();
 
-// Configure Legend State for Supabase
-configureSyncedSupabase({
+// Create a configured sync function
+export const customSynced = configureSynced(syncedSupabase, {
+    // Use React Native Async Storage
+    persist: {
+        plugin: observablePersistAsyncStorage({
+            AsyncStorage,
+        }),
+    },
     generateId,
-    // Configure sync options
+    supabase,
     changesSince: "last-sync",
     fieldCreatedAt: "created_at",
     fieldUpdatedAt: "updated_at",
+    // Optionally enable soft deletes
     fieldDeleted: "deleted",
 });
 
-// Create the AsyncStorage persistence plugin
-const asyncStoragePersist = observablePersistAsyncStorage({ AsyncStorage });
+// Storage for observable references that need to be initialized/reset
+const observables: { get: () => any; set: (value: any) => void }[] = [];
 
-// Example observable for user settings
-export const userSettings$ = observable(
-    syncedSupabase({
-        supabase,
-        collection: "user_settings",
-        select: from => from.select("*"),
-        actions: ["read", "create", "update"],
-        // Enable realtime updates
-        realtime: true,
-        // Persist locally
-        persist: {
-            name: "user-settings",
-            plugin: asyncStoragePersist,
-            retrySync: true,
-        },
-        retry: {
-            infinite: true,
-        },
-    })
-);
+// Function to register an observable for initialization/reset
+export function registerObservable<T extends { get: () => any; set: (value: any) => void }>(observable: T): T {
+    observables.push(observable);
+    return observable;
+}
 
-// Utility function to initialize an observable for a specific user
+// Utility function to initialize observables for a specific user
 export function initUserObservables(userId: string) {
-    // This could filter data for a specific user once authenticated
-    userSettings$.get();
+    // Initialize all registered observables
+    observables.forEach(obs => obs.get());
 }
 
 // Reset all observables (useful for logout)
 export function resetObservables() {
-    userSettings$.set({});
+    // Reset all registered observables
+    observables.forEach(obs => obs.set({}));
 }
