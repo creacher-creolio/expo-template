@@ -7,7 +7,7 @@ import { supabase } from "./supabase";
 
 WebBrowser.maybeCompleteAuthSession(); // required for web only
 const redirectTo = makeRedirectUri({
-    scheme: "basetemplate",
+    scheme: "expotemplate",
     path: "(tabs)",
 });
 

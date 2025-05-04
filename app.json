@@ -1,11 +1,11 @@
 {
     "expo": {
-        "name": "base-template",
-        "slug": "base-template",
+        "name": "expo-template",
+        "slug": "expo-template",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
-        "scheme": "basetemplate",
+        "scheme": "expotemplate",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
         "splash": {
@@ -17,14 +17,14 @@
         "plugins": ["expo-router"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.yourcompany.basetemplate"
+            "bundleIdentifier": "com.yourcompany.expotemplate"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.yourcompany.basetemplate"
+            "package": "com.yourcompany.expotemplate"
         },
         "web": {
             "bundler": "metro",
