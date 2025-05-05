@@ -17,14 +17,14 @@
         "plugins": ["expo-router"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.yourcompany.expotemplate"
+            "bundleIdentifier": "com.ghostintheapp.expotemplate"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.yourcompany.expotemplate"
+            "package": "com.ghostintheapp.expotemplate"
         },
         "web": {
             "bundler": "metro",

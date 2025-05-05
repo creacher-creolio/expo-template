@@ -2,9 +2,9 @@
     "aliases": {
         "assets": "@/assets",
         "components": "@/components",
-        "constants": "@/lib/constants",
         "hooks": "@/hooks",
         "lib": "@/lib",
+        "constants": "@/lib/constants",
         "services": "@/lib/services",
         "state": "@/lib/state",
         "types": "@/lib/types"
