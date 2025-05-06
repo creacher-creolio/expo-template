@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
       '@expo/vector-icons':
         specifier: ^14.0.4
         version: 14.1.0(expo-font@13.0.4(expo@52.0.46(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@expo/metro-runtime@4.0.1(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1)))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1)
@@ -179,6 +182,9 @@ importers:
       react-native:
         specifier: ^0.76.9
         version: 0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1)
+      react-native-css-interop:
+        specifier: ^0.1.22
+        version: 0.1.22(react-native-reanimated@3.16.7(@babel/core@7.27.1)(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@4.14.1(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1))(react-native-svg@15.8.0(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)
       react-native-gesture-handler:
         specifier: ~2.20.2
         version: 2.20.2(react-native@0.76.9(@babel/core@7.27.1)(@babel/preset-env@7.27.1(@babel/core@7.27.1))(@types/react@18.3.20)(react@18.3.1))(react@18.3.1)
@@ -221,6 +227,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
       '@babel/core':
         specifier: ^7.26.10
@@ -6621,6 +6630,10 @@ packages:
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
 
   uuid@7.0.3:
     resolution: {integrity: sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==}
@@ -14607,6 +14620,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
+
+  uuid@11.1.0: {}
 
   uuid@7.0.3: {}
 

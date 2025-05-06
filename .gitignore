@@ -72,6 +72,7 @@ app-example
 # env files (can opt-in for committing if needed)
 .env*
 .env*.local
+!.env.local.sample
 
 # typescript
 *.tsbuildinfo
