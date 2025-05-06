@@ -1,15 +1,22 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import { View } from "react-native";
 
 import { ProfileButton } from "@/components/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { NAV_THEME } from "@/lib/constants/colors";
+import { useAuth } from "@/lib/contexts/AuthContext";
 import { HomeIcon, DatabaseIcon, UserIcon, ZapIcon } from "@/lib/icons";
 
 export default function TabsLayout() {
     const { isDarkColorScheme } = useColorScheme();
     const colors = isDarkColorScheme ? NAV_THEME.dark : NAV_THEME.light;
+    const { isAuthenticated, isLoading } = useAuth();
+
+    // If the user is not authenticated, redirect to the sign-in page
+    if (!isLoading && !isAuthenticated) {
+        return <Redirect href="/(auth)/sign-in" />;
+    }
 
     return (
         <Tabs

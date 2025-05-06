@@ -25,7 +25,7 @@ export function ProfileButton() {
     const handleSignOut = async () => {
         try {
             await auth.signOut();
-            router.replace("/(tabs)");
+            router.replace("/(auth)/sign-in");
         } catch (error) {
             console.error("Error signing out:", error);
         }
