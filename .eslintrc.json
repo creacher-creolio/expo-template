@@ -3,8 +3,17 @@
         "es2021": true,
         "node": true
     },
-    "extends": ["expo", "eslint:recommended", "prettier"],
-    "plugins": ["expo", "import", "prettier"],
+    "extends": [
+        "expo",
+        "eslint:recommended",
+        "prettier",
+        "plugin:react-native-a11y/all"
+    ],
+    "plugins": [
+        "expo",
+        "import",
+        "prettier"
+    ],
     "ignorePatterns": [
         ".expo/",
         ".prettierrc.js",
@@ -20,7 +29,16 @@
         "import/order": [
             "warn",
             {
-                "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    [
+                        "parent",
+                        "sibling",
+                        "index"
+                    ]
+                ],
                 "pathGroups": [
                     {
                         "pattern": "react",
@@ -85,7 +103,9 @@
     },
     "overrides": [
         {
-            "files": ["components/ui/**/*.{js,ts,jsx,tsx}"],
+            "files": [
+                "components/ui/**/*.{js,ts,jsx,tsx}"
+            ],
             "rules": {
                 "max-len": "off",
                 "max-lines": "off",
@@ -93,7 +113,9 @@
             }
         },
         {
-            "files": ["**/types/**/*.{js,ts,jsx,tsx}"],
+            "files": [
+                "**/types/**/*.{js,ts,jsx,tsx}"
+            ],
             "rules": {
                 "no-unused-vars": "off",
                 "no-explicit-any": "off",
