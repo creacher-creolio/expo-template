@@ -8,12 +8,6 @@
         "scheme": "expotemplate",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
-        "splash": {
-            "image": "./assets/images/splash-icon.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "assetBundlePatterns": ["**/*"],
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.ghostintheapp.expotemplate"
@@ -23,6 +17,7 @@
                 "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
+            "edgeToEdgeEnabled": true,
             "package": "com.ghostintheapp.expotemplate"
         },
         "web": {
