@@ -59,7 +59,8 @@ const InputFieldComponent = React.forwardRef<React.ElementRef<typeof Input>, Inp
                     className="ml-1 mr-2 rounded-full p-1 active:bg-muted/20"
                     onPress={onClear}
                     accessibilityRole="button"
-                    accessibilityLabel="Clear input">
+                    accessibilityLabel="Clear input"
+                    accessibilityHint="Clears the input field">
                     <X size={16} className="text-muted-foreground" />
                 </Pressable>
             );

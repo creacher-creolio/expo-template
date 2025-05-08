@@ -8,25 +8,27 @@
 4. commit
 5. reset project, using the command in package.json
 6. copy over template files, except:
-  - files that are gitignored in the new project
-  - the 'app' folder
-  - components/(auth)
-  - components/(common)
-  - components/profile
-  - components/supabase
-  - hooks
-  - lib/contexts
-  - lib/state
-  - lib/types
-  - lib/validation
-  - docs/project-specific
+  · files that are gitignored in the new project
+  · the 'app' folder
+  · components/(auth)
+  · components/(common)
+  · components/profile
+  · components/supabase
+  · hooks
+  · lib/contexts
+  · lib/state
+  · lib/types
+  · lib/validation
+  · docs/project-specific
+
 7. other project tweaks
-  - delete eslint.config.js
-  - update the mcp server file
+· delete eslint.config.js
+· update the mcp server file
+
 8. setup supabase
-  - setup the project
-  - update env.local
-  - download types
+· setup the project
+· update env.local
+· download types
 
 ## Initial Install & Setup
 

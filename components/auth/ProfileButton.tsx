@@ -15,6 +15,7 @@ export function ProfileButton() {
     if (!isAuthenticated) {
         return (
             <TouchableOpacity
+                accessibilityRole="button"
                 onPress={() => router.push("/(auth)/sign-in")}
                 className="h-8 w-8 items-center justify-center rounded-full bg-primary">
                 <UserIcon className="h-5 w-5 text-primary-foreground" />
@@ -36,7 +37,7 @@ export function ProfileButton() {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <TouchableOpacity className="h-8 w-8 overflow-hidden rounded-full bg-accent">
+                <TouchableOpacity accessibilityRole="button" className="h-8 w-8 overflow-hidden rounded-full bg-accent">
                     <View className="h-full w-full items-center justify-center">
                         <Text className="text-sm font-medium text-accent-foreground">{userInitial}</Text>
                     </View>
@@ -46,6 +47,7 @@ export function ProfileButton() {
                 <Text className="p-2 text-sm font-medium text-popover-foreground">{user?.email}</Text>
 
                 <TouchableOpacity
+                    accessibilityRole="button"
                     onPress={handleSignOut}
                     className="flex-row items-center gap-2 rounded-md p-2 hover:bg-accent">
                     <LogOutIcon className="h-4 w-4 text-popover-foreground" />

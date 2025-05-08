@@ -9,7 +9,6 @@
   - <http://localhost:8081/>**
   - exp://**
 
-
 ## API Docs > Tables and Views > Introduction
 
 - Click the "Generate and download types" button

@@ -20,6 +20,8 @@ const NewTodo = () => {
     };
     return (
         <TextInput
+            accessibilityLabel="Text input field"
+            accessibilityHint="Enter a new todo"
             value={text}
             onChangeText={text => setText(text)}
             onSubmitEditing={handleSubmitEditing}
@@ -36,6 +38,7 @@ const Todo = ({ todo }: { todo: Tables<"todos"> }) => {
     };
     return (
         <TouchableOpacity
+            accessibilityRole="button"
             key={todo.id}
             onPress={handlePress}
             className={`mb-4 rounded-lg p-4 ${todo.done ? "bg-green-100" : "bg-yellow-100"}`}>
@@ -71,7 +74,7 @@ const ClearTodos = observer(() => {
     };
 
     return todoCount > 0 ? (
-        <TouchableOpacity onPress={handlePress}>
+        <TouchableOpacity accessibilityRole="button" onPress={handlePress}>
             <Text className="m-4 text-center text-base">Clear all ({todoCount})</Text>
         </TouchableOpacity>
     ) : null;

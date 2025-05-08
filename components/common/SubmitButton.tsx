@@ -24,6 +24,7 @@ const SubmitButtonComponent: React.FC<SubmitButtonProps> = ({
             className={`flex-row items-center justify-center ${className}`}
             disabled={isLoading || disabled}
             accessibilityLabel={isLoading ? loadingText || "Loading..." : text}
+            accessibilityHint={isLoading ? "The button is loading. Please wait." : "Press the button to submit."}
             accessibilityState={{ disabled: isLoading || !!disabled, busy: isLoading }}
             {...props}>
             {isLoading ? (

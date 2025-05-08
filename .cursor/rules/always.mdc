@@ -38,6 +38,12 @@ alwaysApply: true
 - Use pnpm instead of npm
 - Prefer text, button, input, label, and alert from components/ui instead of from react-native
 
+## Accessibility
+- Always include accessibilityLabel and accessibilityRole for interactive components.
+- Ensure text components have sufficient font size (min 16px) and contrast ratios (4.5:1).
+- Use expo-haptics for tactile feedback on user actions.
+- Follow WCAG 2.1 Level AA guidelines.
+
 ## Best Practices
 - DRY (Don't Repeat Yourself)
 - SoC (Separation of Concerns): could involve file restructuring/splitting files, etc,...

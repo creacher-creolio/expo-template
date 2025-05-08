@@ -43,7 +43,8 @@ const PasswordInput = React.forwardRef<any, PasswordInputProps>(
                 <Pressable
                     onPress={toggleVisibility}
                     accessibilityRole="button"
-                    accessibilityLabel={isVisible ? "Hide password" : "Show password"}>
+                    accessibilityLabel={isVisible ? "Hide password" : "Show password"}
+                    accessibilityHint="Toggles password visibility">
                     {isVisible ? (
                         <EyeOffIcon className="text-muted-foreground" size={20} />
                     ) : (
@@ -74,6 +75,7 @@ const PasswordInput = React.forwardRef<any, PasswordInputProps>(
                 onBlur={onBlur}
                 textContentType={textContentType}
                 accessibilityLabel={`${placeholder} input field`}
+                accessibilityHint="Enter your password"
             />
         );
     }

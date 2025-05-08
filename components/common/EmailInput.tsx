@@ -35,6 +35,7 @@ const EmailInput = React.forwardRef<any, EmailInputProps>(
                 textContentType="emailAddress"
                 autoComplete="email"
                 accessibilityLabel="Email input field"
+                accessibilityHint="Enter your email address"
             />
         );
     }
