@@ -7,7 +7,7 @@
 **/.vscode
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -47,6 +47,7 @@ yarn-error.*
 next-env.d.ts
 
 # react native
+.kotlin/
 *.orig.*
 *.jks
 *.p8
@@ -88,3 +89,4 @@ app-example
 # Project-specific
 **/.resources
 **/.top_level
+app-example
