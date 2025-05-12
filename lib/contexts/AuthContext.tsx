@@ -68,7 +68,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         // Listen for URLs while app is running
         const subscription = Linking.addEventListener("url", ({ url }) => {
-            console.log("Incoming URL:", url);
             auth.handleDeepLink(url);
         });
 
